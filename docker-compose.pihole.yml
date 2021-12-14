@@ -15,7 +15,6 @@ services:
     environment:
       TZ: 'Europe/Copenhagen'
       WEBPASSWORD_FILE: '/run/secrets/pihole_password'
-      DNSMASQ_LISTENING: local
     secrets:
     - pihole_password
     volumes:
