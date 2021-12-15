@@ -11,7 +11,7 @@ services:
     ports:
       - 8080:8080
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://swarmpit:8080"]
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
       interval: 60s
       timeout: 10s
       retries: 3
@@ -55,7 +55,8 @@ services:
   agent:
     image: swarmpit/agent:latest
     environment:
-      - DOCKER_API_VERSION=1.35
+      - EVENT_ENDPOINT=http://swarmpit:8080/events
+      - HEALTH_CHECK_ENDPOINT=http://swarmpit:8080/version
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
