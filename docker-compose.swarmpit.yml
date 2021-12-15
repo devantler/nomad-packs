@@ -1,0 +1,81 @@
+version: '3.8'
+
+services:
+  swarmpit:
+    image: swarmpit/swarmpit:latest
+    environment:
+      - SWARMPIT_DB=http://couchdb:5984
+      - SWARMPIT_INFLUXDB=http://influxdb:8086
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://swarmpit:8080"]
+      interval: 60s
+      timeout: 10s
+      retries: 3
+    networks:
+      - overlay
+    deploy:
+      resources:
+        limits:
+          memory: 1024M
+        reservations:
+          memory: 512M
+      placement:
+        constraints:
+          - node.role == manager
+  couchdb:
+    image: treehouses/couchdb:2.3.1
+    volumes:
+      - couchdb-data:/opt/couchdb/data
+    networks:
+      - overlay
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
+
+  influxdb:
+    image: influxdb:1.7
+    volumes:
+      - influxdb-data:/var/lib/influxdb
+    networks:
+      - overlay
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
+
+  agent:
+    image: swarmpit/agent:latest
+    environment:
+      - DOCKER_API_VERSION=1.35
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - overlay
+    deploy:
+      mode: global
+      labels:
+        swarmpit.agent: 'true'
+      resources:
+        limits:
+          memory: 64M
+        reservations:
+          memory: 32M
+
+networks:
+  overlay:
+    external: true
+
+volumes:
+  couchdb-data:
+    driver: local
+  influxdb-data:
+    driver: local

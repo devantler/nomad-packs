@@ -18,8 +18,8 @@ services:
     secrets:
     - pihole_password
     volumes:
-      - './etc-pihole:/etc/pihole'
-      - './etc-dnsmasq.d:/etc/dnsmasq.d'
+      - 'etc-pihole:/etc/pihole'
+      - 'etc-dnsmasq.d:/etc/dnsmasq.d'
     cap_add:
       - NET_ADMIN
 
@@ -30,3 +30,9 @@ networks:
 secrets:
   pihole_password:
     external: true
+
+volumes:
+  etc-pihole:
+    driver: local
+  etc-dnsmasq.d:
+    driver: local
