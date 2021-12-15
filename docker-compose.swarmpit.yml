@@ -27,7 +27,7 @@ services:
         constraints:
           - node.role == manager
   couchdb:
-    image: treehouses/couchdb:2.3.1
+    image: treehouses/couchdb:latest
     volumes:
       - couchdb-data:/opt/couchdb/data
     networks:
@@ -40,7 +40,7 @@ services:
           memory: 128M
 
   influxdb:
-    image: influxdb:1.7
+    image: influxdb:latest
     volumes:
       - influxdb-data:/var/lib/influxdb
     networks:
