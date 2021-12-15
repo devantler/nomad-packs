@@ -27,7 +27,7 @@ services:
         constraints:
           - node.role == manager
   couchdb:
-    image: treehouses/couchdb:latest
+    image: treehouses/couchdb:2.3.1
     volumes:
       - couchdb-data:/opt/couchdb/data
     networks:
@@ -40,7 +40,7 @@ services:
           memory: 128M
 
   influxdb:
-    image: influxdb:latest
+    image: influxdb:1.8.10
     volumes:
       - influxdb-data:/var/lib/influxdb
     networks:
@@ -53,7 +53,7 @@ services:
           memory: 128M
 
   agent:
-    image: swarmpit/agent:latest
+    image: swarmpit/agent:2.2
     environment:
       - EVENT_ENDPOINT=http://swarmpit:8080/events
       - HEALTH_CHECK_ENDPOINT=http://swarmpit:8080/version
