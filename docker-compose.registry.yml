@@ -1,0 +1,40 @@
+version: "3.8"
+
+services:
+  registry:
+  image: registry:latest
+  ports:
+    - 5000:5000
+  secrets:
+    - registry_auth.crt
+    - registry_auth.key
+  environment:
+    REGISTRY_HTTP_TLS_CERTIFICATE: /run/secrets/registry_auth.crt
+    REGISTRY_HTTP_TLS_KEY: /run/secrets/registry_auth.key
+    REGISTRY_AUTH: htpasswd
+    REGISTRY_AUTH_HTPASSWD_PATH: /auth/htpasswd
+    REGISTRY_AUTH_HTPASSWD_REALM: Registry Realm
+  volumes:
+    - registry-data:/var/lib/registry
+    - registry-certs:/certs
+    - registry-auth:/auth
+  networks:
+    - overlay
+
+networks:
+  overlay:
+    external: true
+
+volumes:
+  registry-data:
+    driver: local
+  registry-certs:
+    driver: local
+  registry-auth:
+    driver: local
+
+secrets:
+  registry_auth.crt:
+    external: true
+  registry_auth.key:
+    external: true
