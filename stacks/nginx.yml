@@ -7,7 +7,8 @@ services:
       - '81:81'
       - '443:443'
     volumes:
-      - nginx:/data
-      - nginx:/etc/letsencryptx
+      - nginx_data:/data
+      - nginx_etc_letsencryptx:/etc/letsencryptx
 volumes:
-  nginx:
+  nginx_data:
+  nginx_etc_letsencryptx:
