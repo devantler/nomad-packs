@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  dockovpn:
+    image: alekslitvinenk/openvpn
+    cap_add:
+        - NET_ADMIN
+    ports:
+        - 1194:1194/udp
+    environment:
+        HOST_ADDR: https://api.ipify.org
+    volumes:
+        - ./openvpn_conf:/doc/Dockovpn
