@@ -1,22 +1,21 @@
 version: "3.8"
 services:
   wireguard:
-    image: lscr.io/linuxserver/wireguard
+    image: lscr.io/linuxserver/wireguard:1.0.20210914
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
     environment:
-      - PUID=1001
-      - PGID=100
+      - PUID=1000
+      - PGID=1000
       - TZ=Europe/Copenhagen
       - SERVERURL=vpn.devantler.com
       - SERVERPORT=51820
       - PEERS=macbook #change to match how many devies you want to use Wireguard on
       - PEERDNS=auto
       - INTERNAL_SUBNET=10.13.13.0 #optional
-      - ALLOWEDIPS=0.0.0.0/0 #optional
     volumes:
-      - ./wireguard:/config
+      - ./data/wireguard/config:/config
       - /lib/modules:/lib/modules #do not change
     ports:
       - 51820:51820/udp

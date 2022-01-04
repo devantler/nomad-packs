@@ -1,4 +1,6 @@
-wireguard/*
-nginx/data/*
-nginx/letsencrypt/*
-!*.gitkeep
+!*/
+data/nginx/data/*
+data/nginx/etc-letsencrypt/*
+data/pihole/etc-dnsmasq.d/*
+data/pihole/etc-pihole/*
+data/wireguard/config/*
