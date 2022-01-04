@@ -11,11 +11,11 @@ services:
       - TZ=Europe/Copenhagen
       - SERVERURL=vpn.devantler.com
       - SERVERPORT=51820
-      - PEERS=macbook #change to match how many devies you want to use Wireguard on
+      - PEERS=macbook
       - PEERDNS=auto
-      - INTERNAL_SUBNET=10.13.13.0 #optional
+      - INTERNAL_SUBNET=10.13.13.0
     volumes:
-      - ./data/wireguard/config:/config
-      - /lib/modules:/lib/modules #do not change
+      - ./data/wireguard:/config
+      - /lib/modules:/lib/modules
     ports:
       - 51820:51820/udp

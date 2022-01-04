@@ -1,6 +1,2 @@
 !*/
-data/nginx/data/*
-data/nginx/etc-letsencrypt/*
-data/pihole/etc-dnsmasq.d/*
-data/pihole/etc-pihole/*
-data/wireguard/config/*
+stacks/data

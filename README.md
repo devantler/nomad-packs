@@ -1,7 +1,3 @@
-# Nikolai Emil Damms home cluster.
+# devantler-cluster
 
-
-
-## Wireguard
-
-<https://hub.docker.com/r/linuxserver/wireguard>
+This repo contains all my stacks for my devantler-cluster
