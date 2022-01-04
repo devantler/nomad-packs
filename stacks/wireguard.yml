@@ -10,14 +10,13 @@ services:
       - PGID=1000
       - TZ=Europe/Copenhagen
       - SERVERURL=vpn.devantler.com
-      - SERVERPORT=51820
-      - PEERS=macbook
-      - PEERDNS=auto
-      - INTERNAL_SUBNET=10.13.13.0
+      - PEERS=macbook, phone
     volumes:
       - wireguard_config:/config
       - /lib/modules:/lib/modules
     ports:
       - 51820:51820/udp
+    sysctls:
+      - net.ipv4.conf.all.src_valid_mark=1
 volumes:
   wireguard_config:
