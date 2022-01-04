@@ -1,3 +1,4 @@
 wireguard/*
-wireguard/data/*
-wireguard/letsencrypt/*
+nginx/data/*
+nginx/letsencrypt/*
+!*.gitkeep

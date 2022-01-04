@@ -16,7 +16,7 @@ services:
       - INTERNAL_SUBNET=10.13.13.0 #optional
       - ALLOWEDIPS=0.0.0.0/0 #optional
     volumes:
-      - /wireguard/config:/config
+      - ./wireguard:/config
       - /lib/modules:/lib/modules #do not change
     ports:
       - 51820:51820/udp
