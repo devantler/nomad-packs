@@ -1,2 +1,14 @@
+# Disable ignoring folders
 !*/
-stacks/data
+
+# nginx
+stacks/data/nginx/data/*
+stacks/data/nginx/etc-letsencrypt/*
+
+# pihole
+stacks/data/nginx/etc-dnsmasq.d/*
+stacks/data/nginx/etc-pihole/*
+
+# wireguard
+stacks/data/wireguard/*
+
