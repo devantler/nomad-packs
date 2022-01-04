@@ -1,15 +1,13 @@
 version: "3.8"
 services:
   pihole:
-    hostname: pihole.home
+    hostname: pihole.devantler.com
     image: pihole/pihole:2021.11
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp"
       - "8080:80/tcp"
-    networks:
-    - overlay
     environment:
       TZ: 'Europe/Copenhagen'
       WEBPASSWORD_FILE: '/run/secrets/pihole_password'
@@ -20,10 +18,6 @@ services:
       - 'etc-dnsmasq.d:/etc/dnsmasq.d'
     cap_add:
       - NET_ADMIN
-
-networks:
-  overlay:
-    external: true
 
 secrets:
   pihole_password:
