@@ -11,11 +11,15 @@ services:
       - TZ=Europe/Copenhagen
       - SERVERURL=vpn.devantler.com
       - PEERS=macbook, phone
-      - ALLOWEDIPS= 10.13.13.0/24
     volumes:
       - wireguard_config:/config
       - /lib/modules:/lib/modules
     ports:
       - 51820:51820/udp
+    networks:
+      - overlay
 volumes:
   wireguard_config:
+networks:
+  overlay:
+    external: true
