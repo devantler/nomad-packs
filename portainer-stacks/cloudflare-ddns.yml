@@ -4,7 +4,7 @@ services:
   cloudflare-ddns:
     image: oznu/cloudflare-ddns:latest
     environment:
-      API_KEY: /run/secrets/cloudflare_api_token
+      API_KEY: Y4bqheUWmfcj6mc5jAlIxJnEy18LiemxDR5tv1Bm
       ZONE: devantler.com
       PROXIED: "true"
       PUID: 1000
