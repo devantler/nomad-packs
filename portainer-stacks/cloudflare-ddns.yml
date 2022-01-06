@@ -8,7 +8,6 @@ services:
       ZONE: devantler.com
       SUBDOMAIN: www
       PROXIED: "true"
-      CRON: "*/1 * * * *"
       PUID: 1000
       PGID: 1000
     secrets:
