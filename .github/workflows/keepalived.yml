@@ -8,17 +8,18 @@ on:
       - "stacks/keepalived.yml"
 
 jobs:
-  name: Deploy stack to Portainer
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Deploy Stack
-      uses: kgierke/portainer-stack-deployment@v1
-      with:
-        portainer-url: "https://portainer.devantler.com"
-        portainer-username: ${{ secrets.PORTAINER_USERNAME }}
-        portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
-        portainer-endpoint: 1
-        name: keepalived
-        file: stacks/keepalived.yml
+  deploy_stack_to_portainer:
+    name: Deploy stack to Portainer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Deploy Stack
+        uses: kgierke/portainer-stack-deployment@v1
+        with:
+          portainer-url: "https://portainer.devantler.com"
+          portainer-username: ${{ secrets.PORTAINER_USERNAME }}
+          portainer-password: ${{ secrets.PORTAINER_PASSWORD }}
+          portainer-endpoint: 1
+          name: keepalived
+          file: stacks/keepalived.yml
