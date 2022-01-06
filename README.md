@@ -1,15 +1,27 @@
-# devantler-cluster
+# Portainer + Docker Swarm managed cluster
 
-This repo contains all my stacks for my devantler-cluster
+This repo contains stacks for a fully docker-managed cluster, that supports all modern architectures.
+
+## Prerequisites
+
+- A host machine with an initialized Docker Swarm.
+- Port 443 forwarded on the virtual IP for manager nodes (192.168.1.200 by default)
+- A Cloudflare domain set up with:
+  - A record on domainname.tld
+  - A record on www
+  - CNAME on any subdomain
+- A Cloudflare API token to support DDNS updates:
+  - ![Cloudflare API token for DDNS updates](resources/images/ddns-api-token.png)  
 
 ## Getting started
 
-To deploy this cluster the following is required:
-
-- A host machine with Docker
-- Port 80 should be forwarded on the router
-- The stacks in self-managed should be manually deployed on the host
-- The stacks in portainer-stacks should be setup to auto deploy on changes with GitHub Webhooks provided by Portainer.
+- Deploy Portainer on a manager (see <https://docs.portainer.io/v/ce-2.11/start/install/server>)
+  - If you own a business, you can get the business edition for free <https://www.portainer.io/pricing/take5>
+  - There is a sample compose file in `stacks/portainer.yml`, but it might be outdated.
+- Deploy all stacks in the `stacks/` folder with Portainer, to ensure:
+  - DDNS updates to Cloudflare
+  - Virtual IP that automatically allocates all managers to a single Virtual IP.
+  - Nginx Proxy Manager to reverse proxy all traffic safely to the cluster and manage SSL.
 
 ## Services in the cluster
 
