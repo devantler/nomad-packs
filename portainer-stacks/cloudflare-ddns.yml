@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    environment:
+      - API_KEY=/run/secrets/cloudflare_api_token
+      - ZONE=devantler.com
+      - PROXIED=true
+      - PUID=1000
+      - PGID=1000
+    secrets:
+      - cloudflare_api_token
+secrets:
+  cloudflare_api_token:
+    external: true
