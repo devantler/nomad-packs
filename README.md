@@ -14,12 +14,12 @@ This repo contains stacks for a fully docker-managed cluster, that supports all 
 - A Cloudflare API token to support DDNS updates:
   - ![Cloudflare API token for DDNS updates](resources/images/ddns-api-token.png)  
 
-## Getting started
+## Getting started 
 
 - Deploy Portainer on a manager (see <https://docs.portainer.io/v/ce-2.11/start/install/server>)
   - If you own a business, you can get the business edition for free <https://www.portainer.io/pricing/take5>
   - There is a sample compose file in `stacks/portainer.yml`, but it might be outdated.
-- Deploy all stacks in the `stacks/` folder with Portainer, to ensure:
+- Deploy all stacks in the `stacks/` folder with Portainer to ensure:
   - DDNS updates to Cloudflare
   - Virtual IP that automatically allocates all managers to a single Virtual IP.
   - Nginx Proxy Manager to reverse proxy all traffic safely to the cluster and manage SSL.
