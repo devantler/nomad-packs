@@ -5,7 +5,8 @@ This repo contains stacks for a fully docker-managed cluster, that supports all 
 ## Prerequisites
 
 - A host machine with an initialized Docker Swarm.
-- Port 443 forwarded on the virtual IP for manager nodes (192.168.1.200 by default)
+- Port 443/TCP forwarded on the virtual IP for manager nodes (192.168.1.200 by default) - Reverse Proxy
+- Port 51820/UDP forwarded on the virtual IP for manager nodes (192.168.1.200 by default) - VPN Access
 - A Cloudflare domain set up with:
   - A record on domainname.tld
   - A record on www
