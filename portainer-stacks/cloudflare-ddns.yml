@@ -6,7 +6,7 @@ services:
     environment:
       API_KEY: /run/secrets/cloudflare_api_token
       ZONE: devantler.com
-      PROXIED: true
+      PROXIED: "true"
       PUID: 1000
       PGID: 1000
     secrets:
