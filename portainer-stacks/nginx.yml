@@ -3,15 +3,9 @@ services:
   nginx:
     image: 'jc21/nginx-proxy-manager:2.9.14'
     ports:
-      - mode: host
-        protocol: tcp
-        published: 80
-        target: 80
-      - mode: host
-        protocol: tcp
-        published: 443
-        target: 443
+      - '80:80'
       - '81:81'
+      - '443:443'
     volumes:
       - nginx_data:/data
       - nginx_etc_letsencryptx:/etc/letsencryptx
