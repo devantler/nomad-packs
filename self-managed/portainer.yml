@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   portainer:
-    image: portainer/portainer-ce:2.11.0
+    image: portainer/portainer-ee:linux-arm-2.10.0
     command: -H tcp://tasks.agent:9001 --tlsskipverify
     ports:
       - "9443:9443"
