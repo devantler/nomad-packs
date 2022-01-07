@@ -2,10 +2,23 @@ version: '3.8'
 
 services:
   keepalived:
-    image: geoffh1977/keepalived:2.0.19
+    image: osixia/keepalived:release-2.1.5-dev
+    cap_add:
+      - NET_ADMIN
+      - NET_BROADCAST
+      - NET_RAW
+    networks:
+      - host
     deploy:
       mode: global
       placement:
         constraints: [node.role == manager]
+    volumes:
+      - etc-keepalived:/etc/keepalived/keepalived.conf
     environment:
-      VIRTUAL_IP: "192.168.1.200"
+      KEEPALIVED_VIRTUAL_IPS: "192.168.1.200"
+    
+networks:
+  host:
+    external: true
+    name: host
