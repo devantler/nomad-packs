@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   keepalived:
-    image: geoffh1977/keepalived:latest
+    image: geoffh1977/keepalived:2.0.19
     deploy:
       mode: global
       placement:
