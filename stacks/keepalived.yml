@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   keepalived:
-    image: osixia/keepalived:2.0.20
+    image: lolhens/keepalived-swarm:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /usr/bin/docker:/usr/bin/docker:ro
@@ -13,7 +13,7 @@ services:
       placement:
         constraints: [node.role == manager]
     environment:
-      KEEPALIVED_VIRTUAL_IPS: "192.168.1.200"
+      KEEPALIVED_VIRTUAL_IPS: "192.168.1.230"
 
 networks:
   host:
