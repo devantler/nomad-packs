@@ -2,20 +2,10 @@ version: '3.8'
 
 services:
   keepalived:
-    image: lolhens/keepalived-swarm:latest
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - /usr/bin/docker:/usr/bin/docker:ro
-    networks:
-      - host
+    image: geoffh1977/keepalived:2
     deploy:
       mode: global
       placement:
         constraints: [node.role == manager]
     environment:
-      KEEPALIVED_VIRTUAL_IPS: "192.168.1.230"
-
-networks:
-  host:
-    external: true
-    name: host
+      VIRTUAL_IP: "192.168.1.200"
