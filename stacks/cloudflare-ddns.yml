@@ -12,6 +12,8 @@ services:
       PGID: 1000
     secrets:
       - cloudflare_api_token
+      - cloudflare_zone
+      - cloudflare_subdomain
 secrets:
   cloudflare_api_token:
     external: true
