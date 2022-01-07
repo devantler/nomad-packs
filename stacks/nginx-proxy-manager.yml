@@ -3,7 +3,6 @@ services:
   nginx-proxy-manager:
     image: 'jc21/nginx-proxy-manager:2.9.14'
     ports:
-      - '22:22' # SSH
       - '80:80' # Public HTTP Port
       - '81:81' # Admin Web Port
       - '443:443' # Public HTTPS Port
