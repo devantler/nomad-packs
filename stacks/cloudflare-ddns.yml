@@ -5,6 +5,7 @@ services:
     image: oznu/cloudflare-ddns:latest
     environment:
       API_KEY_FILE: /run/secrets/cloudflare_api_token
+      ZONE: devantler.com
       ZONE_FILE: /run/secrets/cloudflare_zone
       SUBDOMAIN_FILE: /run/secrets/cloudflare_subdomain
       PROXIED: "true"
