@@ -7,8 +7,8 @@ services:
       - '81:81' # Admin Web Port
       - '443:443' # Public HTTPS Port
     volumes:
-      - nginx_proxy_manager_data:/data
-      - nginx_proxy_manager_etc_letsencrypt:/etc/letsencrypt
+      - nginx_data:/data
+      - nginx_etc_letsencrypt:/etc/letsencrypt
 volumes:
-  nginx_proxy_manager_data:
-  nginx_proxy_manager_etc_letsencrypt:
+  nginx_data:
+  nginx_etc_letsencrypt:
