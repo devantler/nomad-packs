@@ -1,25 +1,25 @@
 version: "3.8"
 services:
-  wireguard:
-    image: lscr.io/linuxserver/wireguard:1.0.20210914
+  wg-easy:
+    environment:
+      - WG_HOST=vpn.devantler.com
+
+      # Optional:
+      # - PASSWORD=foobar123
+      # - WG_PORT=51820
+      # - WG_DEFAULT_ADDRESS=10.8.0.x
+      # - WG_DEFAULT_DNS=1.1.1.1
+      # - WG_ALLOWED_IPS=192.168.15.0/24, 10.0.1.0/24
+      
+    image: weejewel/wg-easy
+    volumes:
+      - .:/etc/wireguard
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
-    environment:
-      - PUID=1001
-      - PGID=1001
-      - TZ=Europe/Copenhagen
-      - SERVERURL=vpn.devantler.com
-      - PEERS=macbook, phone
-    volumes:
-      - wireguard_config:/config
-      - /lib/modules:/lib/modules
-    ports:
-      - 51820:51820/udp
-    networks:
-      - overlay
-volumes:
-  wireguard_config:
-networks:
-  overlay:
-    external: true
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv4.conf.all.src_valid_mark=1
