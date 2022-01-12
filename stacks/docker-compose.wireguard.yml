@@ -19,6 +19,12 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     secrets:
       - wireguard_password
+    deploy:
+      labels:
+        io.portainerhack.cap_add1: NET_ADMIN
+        io.portainerhack.cap_add2: SYS_MODULE
+      mode: replicated
+      replicas: 1
 volumes:
   wireguard_etc_wireguard:
 secrets:
