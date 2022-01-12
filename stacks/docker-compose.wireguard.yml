@@ -21,7 +21,7 @@ services:
       - wireguard_password
     deploy:
       labels:
-        io.portainerhack.cap_add: ALL
+        io.portainerhack.cap_add: SYS_MODULE
       mode: replicated
       replicas: 1
 volumes:
