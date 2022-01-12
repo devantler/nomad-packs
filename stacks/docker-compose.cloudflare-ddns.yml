@@ -4,7 +4,7 @@ services:
   cloudflare-ddns:
     image: oznu/cloudflare-ddns:latest
     environment:
-      API_KEY_FILE: /run/secrets/cloudflare_api_token
+      API_KEY_FILE: /run/secrets/cloudflare_ddns_token
       ZONE: devantler.com
       ZONE_FILE: /run/secrets/cloudflare_zone
       SUBDOMAIN_FILE: /run/secrets/cloudflare_subdomain
@@ -12,11 +12,11 @@ services:
       PUID: 1000
       PGID: 1000
     secrets:
-      - cloudflare_api_token
+      - cloudflare_ddns_token
       - cloudflare_zone
       - cloudflare_subdomain
 secrets:
-  cloudflare_api_token:
+  cloudflare_ddns_token:
     external: true
   cloudflare_zone:
     external: true
