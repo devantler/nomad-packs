@@ -3,7 +3,7 @@ services:
   wg-easy:
     image: weejewel/wg-easy
     environment:
-      - WG_HOST=vpn.devantler.com
+      - WG_HOST=/run/secrets/wireguard_host
       - PASSWORD=/run/secrets/wireguard_password
       # - WG_DEFAULT_DNS=1.1.1.1
     volumes:
@@ -21,12 +21,13 @@ services:
       - wireguard_password
     deploy:
       labels:
-        io.portainerhack.cap_add: NET_ADMIN
-        io.portainerhack.cap_add: SYS_MODULE
+        io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
       mode: replicated
       replicas: 1
 volumes:
   wireguard_etc_wireguard:
 secrets:
   wireguard_password:
+    external: true
+  wireguard_host:
     external: true
