@@ -27,9 +27,6 @@ services:
       traefik.http.routers.wg-easy.service: "wg-easy"
       traefik.http.routers.wg-easy.rule: "Host(`vpn.devanter.com`)"
       traefik.http.services.wg-easy.loadbalancer.server.port: 51821
-    deploy:
-      mode: replicated
-      replicas: 1
 volumes:
   wireguard_etc_wireguard:
 secrets:
