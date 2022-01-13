@@ -1,53 +1,63 @@
-version: "3.8"
+version: '3.8'
+
 services:
+
   traefik:
     image: traefik:v2.6
     command:
-      # Tell Traefik to discover containers using the Docker API
+      # Docker swarm configuration
       - --providers.docker=true
-      # Do not expose containers unless explicitly told so
+      - --providers.docker.swarmMode=true
       - --providers.docker.exposedbydefault=false
-      # Set up LetsEncrypt
+      - --providers.docker.network=public
+      # Configure entrypoint
+      - --entrypoints.web.address=:80
+      - --entrypoints.websecure.address=:443
+      # SSL configuration
       - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
       - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare
       - --certificatesresolvers.letsencrypt.acme.email=nikolaiemildamm@icloud.com # Use /run/secrets/email when possible
       - --certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json
-      # Set up an insecure listener that redirects all traffic to TLS
-      - --entrypoints.web.address=:80
+      # Redirect to HTTPS
       - --entrypoints.web.http.redirections.entrypoint.to=websecure
       - --entrypoints.web.http.redirections.entrypoint.scheme=https
-      - --entrypoints.websecure.address=:443
-      # Set up the TLS configuration for our websecure listener
-      - --entrypoints.websecure.http.tls=true
-      - --entrypoints.websecure.http.tls.certResolver=letsencrypt
-      - --entrypoints.websecure.http.tls.domains[0].main=traefik.devantler.com # Use /run/secrets/traefik_domain when possible
-      - --entrypoints.websecure.http.tls.domains[0].sans=*.traefik.devantler.com # Use /run/secrets/traefik_subdomain when possible
+      # Enable dashboard
+      - --api.dashboard=true
     environment:
       # CloudFlare specific letsencrypt environment variables (https://go-acme.github.io/lego/dns/cloudflare/)
-      - CLOUDFLARE_EMAIL=/run/secrets/email
-      - CLOUDFLARE_DNS_API_TOKEN=/run/secrets/cloudflare_dns_api_token
+      CF_API_EMAIL: /run/secrets/email
+      CF_DNS_API_TOKEN: f17OcmNSRWSh7OwxWh5v4hyt6aHPAmrT5bH9Rya1 # /run/secrets/cloudflare_dns_api_token
     ports:
       - 80:80
       - 443:443
+    networks:
+      - public
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - letsencrypt:/letsencrypt
     secrets:
       - email
       - cloudflare_dns_api_token
-    labels:
-      traefik.enable: "true"
-      traefik.http.routers.traefik.service: "traefik"
-      traefik.http.routers.traefik.entrypoints: "websecure"
-      traefik.http.routers.traefik.tls.certresolver: "letsencrypt"
-      traefik.http.routers.traefik.rule: "Host(`devantler.com`)" # Use /run/secrets/domain when possible
-      traefik.http.services.portainer.loadbalancer.server.port: 8080
-      traefik.http.routers.traefik.middlewares: "strip"
-      traefik.http.middlewares.strip.stripprefix.prefixes: "/traefik"
+    deploy:
+      placement:
+        constraints:
+          - node.role == manager
+      labels:
+        traefik.enable: "true"
+        traefik.http.routers.traefik.rule: "Host(`traefik.devantler.com`)"
+        traefik.http.routers.traefik.entrypoints: "websecure"
+        traefik.http.routers.traefik.tls.certresolver: "letsencrypt"
+        traefik.http.routers.traefik.service: "api@internal"
+        traefik.http.routers.traefik.middlewares: "auth"
+        traefik.http.services.traefik.loadbalancer.server.port: 8080
+        traefik.http.middlewares.auth.basicauth.users: "nikolaiemildamm:$$2y$$05$$8tva4VlVV8bUOjyLAAU3BOnD5lF2aqYUBTUBKhtfKSt9QaEWzF5Se"
+
+networks:
+  public:
+    external: true
 
 volumes:
   letsencrypt: null
-
 secrets:
   email:
     external: true
