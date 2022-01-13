@@ -24,7 +24,9 @@ services:
     deploy:
       labels:
         io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
-        traefik.http.routers.wg-easy.rule: Host(`vpn.devanter.com`)
+        traefik.enable: "true"
+        traefik.http.routers.wg-easy.service: "wg-easy"
+        traefik.http.routers.wg-easy.rule: "Host(`vpn.devanter.com`)"
         traefik.http.services.wg-easy.loadbalancer.server.port: 51821
       mode: replicated
       replicas: 1
