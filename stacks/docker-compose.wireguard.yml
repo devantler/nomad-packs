@@ -21,13 +21,13 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     secrets:
       - wireguard_password
+    labels:
+      io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
+      traefik.enable: "true"
+      traefik.http.routers.wg-easy.service: "wg-easy"
+      traefik.http.routers.wg-easy.rule: "Host(`vpn.devanter.com`)"
+      traefik.http.services.wg-easy.loadbalancer.server.port: 51821
     deploy:
-      labels:
-        io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
-        traefik.enable: "true"
-        traefik.http.routers.wg-easy.service: "wg-easy"
-        traefik.http.routers.wg-easy.rule: "Host(`vpn.devanter.com`)"
-        traefik.http.services.wg-easy.loadbalancer.server.port: 51821
       mode: replicated
       replicas: 1
 volumes:
