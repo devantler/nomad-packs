@@ -15,8 +15,6 @@ services:
       - cloudflare_ddns_token
       - cloudflare_zone
       - cloudflare_subdomain
-    labels:
-      traefik.enable: "false"
 secrets:
   cloudflare_ddns_token:
     external: true
