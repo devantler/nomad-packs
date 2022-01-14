@@ -4,7 +4,7 @@ services:
     image: weejewel/wg-easy
     environment:
       WG_HOST: vpn.devantler.com
-      PASSWORD: Jepfa202042
+      PASSWORD: trm!TxZbJU*wT$wC
       WG_POST_UP: iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
 
       #WG_DEFAULT_DNS: 8.8.8.8, 8.8.4.4
