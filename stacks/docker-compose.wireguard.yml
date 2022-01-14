@@ -1,15 +1,17 @@
 version: "3.8"
 services:
-  wg-easy:
+  wireguard:
     image: weejewel/wg-easy
     environment:
-      - WG_HOST=vpn.devantler.com
-      - PASSWORD=Jepfa202042
-      #- WG_HOST=/run/secrets/wireguard_host
-      #- PASSWORD=/run/secrets/wireguard_password
-      # - WG_DEFAULT_DNS=1.1.1.1
+      WG_HOST: vpn.devantler.com
+      PASSWORD: Jepfa202042
+      WG_POST_UP: iptables -A FORWARD -i %i -j ACCEPT; iptables -A FORWARD -o %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth1 -j MASQUERADE
+
+      #WG_DEFAULT_DNS: 8.8.8.8, 8.8.4.4
     volumes:
       - wireguard_etc_wireguard:/etc/wireguard
+    networks:
+      - public
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -18,18 +20,24 @@ services:
       - net.ipv4.conf.all.src_valid_mark=1
     secrets:
       - wireguard_password
-    labels:
-      io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
-      traefik.enable: "true"
-      traefik.http.routers.wg-easy.service: "wg-easy"
-      traefik.http.routers.wg-easy.entrypoints: "websecure"
-      traefik.http.routers.wg-easy.tls.certresolver: "letsencrypt"
-      traefik.http.routers.wg-easy.rule: "Host(`vpn.devanter.com`)"
-      traefik.http.services.wg-easy.loadbalancer.server.port: 51821
-      traefik.http.routers.wg.easy.middlewares: private-network-ipwhitelist
-      # Test UDP
-      #traefik.udp.routers.wg.easy.entrypoints: "udp"
-      #traefik.udp.services.wg.easy.loadbalancer.server.port: 51820
+      - wireguard_host
+    deploy:
+      replicas: 1
+      labels:
+        io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE # Remove when portainer supports capabilities by default
+        traefik.enable: "true"
+        traefik.http.routers.wireguard.rule: "Host(`vpn.devantler.com`)"
+        traefik.http.routers.wireguard.entrypoints: "websecure"
+        traefik.http.routers.wireguard.tls.certresolver: "letsencrypt"
+        traefik.http.routers.wireguard.service: "wireguard"
+        traefik.http.services.wireguard.loadbalancer.server.port: 51821
+        traefik.udp.routers.wireguard.entrypoints: "vpn"
+        traefik.udp.routers.wireguard.service: "wireguard"
+        traefik.udp.services.wireguard.loadbalancer.server.port: 51820
+
+networks:
+  public:
+    external: true
 volumes:
   wireguard_etc_wireguard:
 secrets:
