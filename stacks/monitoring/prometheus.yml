@@ -13,12 +13,6 @@ services:
       - "9090:9090"
     networks:
       - traefik
-    deploy:
-      resources:
-        limits:
-          memory: 2048M
-        reservations:
-          memory: 128M
 
 volumes:
   prometheus:
