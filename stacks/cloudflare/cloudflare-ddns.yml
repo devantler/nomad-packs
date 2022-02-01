@@ -5,6 +5,8 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
+    volumes:
+      - cloudflare_ddns:/
     configs:
       - source: cloudflare_ddns_config
         target: /config.json
@@ -12,3 +14,6 @@ services:
 configs:
   cloudflare_ddns_config:
     external: true
+
+volumes:
+  cloudflare_ddns:
