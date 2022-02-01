@@ -6,9 +6,9 @@ services:
       - PUID=1000
       - PGID=1000
     configs:
-      - source: cloudflare_ddns_config
-        target: /config
+      - source: prometheus_config
+        target: /config.json
 
 configs:
-  cloudflare_ddns_config:
+  prometheus_config:
     external: true
