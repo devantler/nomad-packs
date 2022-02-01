@@ -2,7 +2,7 @@ version: "3.8"
 services:
   pihole:
     hostname: pihole.${DOMAIN:?}
-    image: pihole/pihole:2022.01.1
+    image: pihole/pihole:dev
     environment:
       TZ: 'Europe/Copenhagen'
     volumes:
