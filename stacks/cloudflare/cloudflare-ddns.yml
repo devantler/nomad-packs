@@ -7,7 +7,7 @@ services:
       - PGID=1000
     configs:
       - source: cloudflare_ddns_config
-        target: /config2.json
+        target: /config
 
 configs:
   cloudflare_ddns_config:
