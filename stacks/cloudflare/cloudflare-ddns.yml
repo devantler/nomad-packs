@@ -8,8 +8,8 @@ services:
     configs:
       - source: cloudflare_ddns_config
         target: /config.json
-        uid: 1000
-        gid: 1000
+        uid: "1000"
+        gid: "1000"
 
 configs:
   cloudflare_ddns_config:
