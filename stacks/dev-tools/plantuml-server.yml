@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  plantuml:
+    image: nikolaidamm/plantuml-server:jetty
+    networks:
+      - traefik
+    ports:
+      - 8080:8080
+    deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.http.routers.plantuml.rule: "Host(`plantuml.${DOMAIN:?}`)"
+        traefik.http.routers.plantuml.entrypoints: "websecure"
+        traefik.http.routers.plantuml.tls.certresolver: "letsencrypt"
+        traefik.http.services.plantuml.loadbalancer.server.port: 8080
+        traefik.http.routers.plantuml.service: "plantuml"
+        traefik.http.routers.plantuml.middlewares: plantuml-auth
+        traefik.http.middlewares.plantuml-auth.basicauth.users: devantler:$$apr1$$VOnPTHQb$$UBsJR.0Qw20cSHNcfGaLu.,user:$$apr1$$FPTav6uu$$dubqvjphRKI8dF4hRmNuu0
+
+networks:
+  traefik:
+    external: true

@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  grafana:
+    image: grafana/grafana:8.3.4
+    networks:
+      - traefik
+    volumes:
+      - grafana:/var/lib/grafana
+    deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.http.routers.grafana.rule: "Host(`grafana.${DOMAIN:?}`)"
+        traefik.http.routers.grafana.entrypoints: "websecure"
+        traefik.http.routers.grafana.tls.certresolver: "letsencrypt"
+        traefik.http.routers.grafana.service: "grafana"
+        traefik.http.services.grafana.loadbalancer.server.port: 3000
+        traefik.http.routers.grafana.middlewares: grafana-auth@docker
+        traefik.http.middlewares.grafana-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  grafana:

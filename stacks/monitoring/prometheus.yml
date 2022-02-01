@@ -1,0 +1,26 @@
+version: "3.8"
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.33.0
+    volumes:
+      - prometheus:/prometheus
+      - etc_prometheus:/etc/prometheus
+    configs:
+      - source: prometheus_config
+        target: /etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    networks:
+      - traefik
+
+volumes:
+  prometheus:
+  etc_prometheus:
+configs:
+  prometheus_config:
+    external: true
+
+networks:
+  traefik:
+    external: true

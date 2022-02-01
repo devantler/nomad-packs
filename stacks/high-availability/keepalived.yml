@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  keepalived:
+    image: lettore/keepalived:latest
+    cap_add:
+      - NET_ADMIN
+    networks:
+      - host
+    environment:
+      KEEPALIVED_VIRTUAL_IPS: "${VIRTUAL_IPS:-192.168.1.200}"
+    deploy:
+      mode: global
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  host:
+    external: true
+    name: host

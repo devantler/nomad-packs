@@ -1,0 +1,9 @@
+version: '3.8'
+
+services:
+  cloudflare-ddns:
+    image: oznu/cloudflare-ddns:latest
+    environment:
+      API_KEY: ${CLOUDFLARE_DNS_API_TOKEN:?} # Should use a secret instead
+      ZONE: ${DOMAIN:?}
+      PROXIED: "true"

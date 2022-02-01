@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  portainer:
+    image: portainer/portainer-ee:2.10.0
+    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    volumes:
+      - portainer_data:/data
+    networks:
+      - traefik
+      - agent_network
+    ports:
+      - 9443:9443
+    deploy:
+      placement:
+        constraints: [ node.role == manager ]
+      labels:
+        traefik.enable: "true"
+        traefik.http.routers.portainer.rule: "Host(`portainer.${DOMAIN:?}`)"
+        traefik.http.routers.portainer.entrypoints: "websecure"
+        traefik.http.routers.portainer.tls.certresolver: "letsencrypt"
+        traefik.http.services.portainer.loadbalancer.server.port: 9000
+        traefik.http.routers.portainer.service: "portainer"
+
+  agent:
+    image: portainer/agent:2.11.0
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    networks:
+      - agent_network
+    environment:
+      AGENT_CLUSTER_ADDR: tasks.agent
+    deploy:
+      mode: global
+
+networks:
+  traefik:
+    driver: overlay
+    external: true
+  agent_network:
+    external: true
+
+volumes:
+  portainer_data:
