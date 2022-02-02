@@ -5,6 +5,7 @@ services:
     image: pihole/pihole:dev
     environment:
       TZ: 'Europe/Copenhagen'
+      DNS1: 1.1.1.1
     volumes:
       - pihole_etc_pihole:/etc/pihole
       - pihole_etc_dnsmasq.d:/etc/dnsmasq.d
