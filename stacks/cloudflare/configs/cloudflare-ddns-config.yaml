@@ -1,0 +1,8 @@
+auth:
+  scopedToken: #insert token
+domains:
+  - name: # insert domain
+    type: A
+    proxied: true
+    create: true
+    zoneId: #insert zoneid

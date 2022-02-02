@@ -1,16 +1,11 @@
 version: "3.8"
 services:
   cloudflare-ddns:
-    image: timothyjmiller/cloudflare-ddns:latest
-    environment:
-      - PUID=1000
-      - PGID=1000
+    image: joshava/cloudflare-ddns:latest
     configs:
-      - source: cloudflare_ddns_config
-        target: /config.json
-        uid: "1000"
-        gid: "1000"
+      - source: cloudflare-ddns_config
+        target: /app/config.yaml
 
 configs:
-  cloudflare_ddns_config:
+  cloudflare-ddns_config:
     external: true
