@@ -12,7 +12,8 @@ services:
     deploy:
       mode: global
       placement:
-        constraints: [node.role == manager]
+        constraints: 
+          - node.role == manager
 
 networks:
   host:
