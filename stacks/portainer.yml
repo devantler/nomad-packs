@@ -9,18 +9,23 @@ services:
     networks:
       - traefik
       - agent_network
-    ports:
-      - 9443:9443
     deploy:
       placement:
         constraints: [ node.role == manager ]
       labels:
         traefik.enable: "true"
+        # Regular
         traefik.http.routers.portainer.rule: "Host(`portainer.${DOMAIN:?}`)"
         traefik.http.routers.portainer.entrypoints: "websecure"
         traefik.http.routers.portainer.tls.certresolver: "letsencrypt"
         traefik.http.services.portainer.loadbalancer.server.port: 9000
         traefik.http.routers.portainer.service: "portainer"
+        # Edge
+        traefik.http.routers.edge.rule: "Host(`edge.${DOMAIN:?}`)"
+        traefik.http.routers.edge.entrypoints: "websecure"
+        traefik.http.routers.edge.tls.certresolver: "letsencrypt"
+        traefik.http.services.edge.loadbalancer.server.port: 8000
+        traefik.http.routers.edge.service: edge
 
   agent:
     image: portainer/agent:2.11.0
