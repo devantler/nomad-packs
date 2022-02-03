@@ -15,7 +15,8 @@ services:
       - traefik
     deploy:
       placement:
-        constraints: [ node.role == manager ]
+        constraints: 
+          - node.role == manager
       labels:
         traefik.enable: "true"
         traefik.http.routers.pihole.rule: "Host(`pihole.${DOMAIN:?}`)"
