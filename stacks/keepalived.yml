@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   keepalived:
-    image: lettore/keepalived:latest
+    image: lettore/keepalived:arm64v8-latest
     cap_add:
       - NET_ADMIN
     networks:
