@@ -2,7 +2,7 @@ version: "3.8"
 services:
   pihole:
     hostname: pihole.${DOMAIN:?}
-    image: pihole/pihole:dev
+    image: pihole/pihole:2022.01.1
     environment:
       TZ: 'Europe/Copenhagen'
       PIHOLE_DNS_: 1.1.1.1
