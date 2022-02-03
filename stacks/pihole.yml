@@ -5,7 +5,7 @@ services:
     image: pihole/pihole:dev
     environment:
       TZ: 'Europe/Copenhagen'
-      PIHOLE_DNS: 1.1.1.1
+      PIHOLE_DNS_: 1.1.1.1
       DNSMASQ_LISTENING: all
       WEBPASSWORD: ""
     volumes:
