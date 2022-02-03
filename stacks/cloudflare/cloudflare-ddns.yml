@@ -3,9 +3,9 @@ services:
   cloudflare-ddns:
     image: joshava/cloudflare-ddns:2
     configs:
-      - source: cloudflare-ddns_config.yaml
+      - source: cloudflare-ddns-config.yaml
         target: /app/config.yaml
 
 configs:
-  cloudflare-ddns_config.yaml:
+  cloudflare-ddns-config.yaml:
     external: true
