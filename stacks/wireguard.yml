@@ -16,7 +16,7 @@ services:
       - SYS_MODULE
     deploy:
       placement:
-        constraints: [node.hostname == manager]
+        constraints: [node.role == manager]
 
 networks:
   host:
