@@ -2,8 +2,6 @@ version: '3.8'
 services:  
   cloudflare-auth:
     image: akohlbecker/traefik-auth-cloudflare:2.0
-    expose:
-      - 8080
     networks:
       - traefik
     command: ["--auth-domain", "https://devantler.cloudflareaccess.com"]
