@@ -1,9 +1,9 @@
 version: "3.8"
 services:
   pihole:
-    hostname: pihole.${DOMAIN:?}
     image: pihole/pihole:2022.01.1
     environment:
+      VIRTUAL_HOST: pihole.${DOMAIN:?}
       TZ: 'Europe/Copenhagen'
       PIHOLE_DNS_: 1.1.1.1
       DNSMASQ_LISTENING: all
