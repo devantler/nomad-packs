@@ -13,6 +13,7 @@ services:
       - pihole_etc_dnsmasq.d:/etc/dnsmasq.d
     networks:
       - traefik
+    deploy:
       labels:
         traefik.enable: "true"
         traefik.http.routers.pihole.rule: "Host(`pihole.${DOMAIN:?}`)"
