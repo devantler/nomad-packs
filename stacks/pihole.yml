@@ -6,6 +6,7 @@ services:
     environment:
       TZ: 'Europe/Copenhagen'
       PIHOLE_DNS_: 1.1.1.1
+      ServerIP: ${DOMAIN:?}
       DNSMASQ_LISTENING: all
       WEBPASSWORD: ""
     volumes:
