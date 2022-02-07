@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   plantuml:
-    image: nikolaidamm/plantuml-server:jetty
+    image: devantler/plantuml-server:jetty
     networks:
       - traefik
     deploy:
