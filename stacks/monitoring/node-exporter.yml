@@ -2,12 +2,21 @@ version: '3.8'
 services:
   node-exporter:
     image: prom/node-exporter:v1.3.1
-    command:
-      - '--path.rootfs=/host'
+    environment:
+      - NODE_ID={{.Node.ID}}
     networks:
       - internal
     volumes:
-      - '/:/host:ro,rslave'
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+      - /etc/hostname:/etc/nodename
+    command:
+      - '--path.sysfs=/host/sys'
+      - '--path.procfs=/host/proc'
+      - '--collector.textfile.directory=/etc/node-exporter/'
+      - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+      - '--no-collector.ipvs'
     deploy:
       mode: global
 
