@@ -5,12 +5,12 @@ services:
     command:
       - '--path.rootfs=/host'
     networks:
-      - host
+      - internal
     volumes:
       - '/:/host:ro,rslave'
     deploy:
       mode: global
 
 networks:
-  host:
+  internal:
     external: true
