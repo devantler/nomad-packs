@@ -25,8 +25,7 @@ networks:
   traefik:
     external: true
   internal:
-    driver: overlay
-    attachable: true
+    external: true
   
 
 volumes:
