@@ -11,6 +11,7 @@ services:
         target: /etc/prometheus/prometheus.yml
     networks:
       - traefik
+      - internal
     deploy:
       labels:
         traefik.enable: "true"
@@ -32,3 +33,7 @@ configs:
 networks:
   traefik:
     external: true
+  internal:
+    driver: overlay
+    attachable: true
+    
