@@ -7,7 +7,7 @@ services:
       - prometheus:/prometheus
       - etc_prometheus:/etc/prometheus
     configs:
-      - source: prometheus_config
+      - source: prometheus-config
         target: /etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
@@ -18,7 +18,7 @@ volumes:
   prometheus:
   etc_prometheus:
 configs:
-  prometheus_config:
+  prometheus-config:
     external: true
 
 networks:
