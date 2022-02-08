@@ -4,7 +4,7 @@
       image: zcube/cadvisor:v0.39.3
       command: -logtostderr -docker_only
       networks:
-        - traefik
+        - internal
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock:ro
         - /:/rootfs:ro
@@ -15,5 +15,6 @@
         mode: global
 
 networks:
-  traefik:
-    external: true
+  internal:
+    driver: overlay
+    attachable: true
