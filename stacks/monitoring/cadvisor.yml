@@ -1,11 +1,17 @@
-  version: '3.8'
-  services:
-    cadvisor:
-      image: zcube/cadvisor:v0.39.3
-      networks:
-        - internal
-      deploy:
-        mode: global
+version: '3.8'
+services:
+  cadvisor:
+    image: zcube/cadvisor:v0.39.3
+    networks:
+      - internal
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /:/rootfs:ro
+      - /var/run:/var/run
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+    deploy:
+      mode: global
 
 networks:
   internal:
