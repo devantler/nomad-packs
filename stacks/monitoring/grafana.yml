@@ -4,6 +4,7 @@ services:
     image: grafana/grafana:8.3.4
     networks:
       - traefik
+      - internal
     volumes:
       - grafana:/var/lib/grafana
     environment:
@@ -23,6 +24,10 @@ services:
 networks:
   traefik:
     external: true
+  internal:
+    driver: overlay
+    attachable: true
+  
 
 volumes:
   grafana:
