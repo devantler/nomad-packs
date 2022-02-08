@@ -4,9 +4,13 @@ services:
     image: prom/node-exporter:v1.3.1
     command:
       - '--path.rootfs=/host'
-    network_mode: host
-    pid: host
+    networks:
+      - host
     volumes:
       - '/:/host:ro,rslave'
     deploy:
       mode: global
+
+networks:
+  host:
+    external: true
