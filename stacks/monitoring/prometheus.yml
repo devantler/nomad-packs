@@ -13,6 +13,16 @@ services:
       - "9090:9090"
     networks:
       - traefik
+    deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.http.routers.prometheus.rule: "Host(`prometheus.${DOMAIN:?}`)"
+        traefik.http.routers.prometheus.entrypoints: "websecure"
+        traefik.http.routers.prometheus.tls.certresolver: "letsencrypt"
+        traefik.http.services.prometheus.loadbalancer.server.port: 8080
+        traefik.http.routers.prometheus.service: "prometheus"
+        traefik.http.routers.prometheus.middlewares: prometheus-auth
+        traefik.http.middlewares.prometheus-auth.basicauth.users: ${ADMIN_USER:?}:${HASHED_PASSWORD:?}
 
 volumes:
   prometheus:
