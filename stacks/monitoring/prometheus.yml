@@ -14,6 +14,9 @@ services:
     deploy:
       labels:
         traefik.enable: "true"
+        traefik.http.routers.prometheus-http.rule: "Host(`prometheus.${DOMAIN:?}`)"
+        traefik.http.routers.prometheus-http.entrypoints: http
+        traefik.http.routers.prometheus-http.middlewares: https-redirect
         traefik.http.routers.prometheus.rule: "Host(`prometheus.${DOMAIN:?}`)"
         traefik.http.routers.prometheus.entrypoints: "websecure"
         traefik.http.routers.prometheus.tls.certresolver: "letsencrypt"
