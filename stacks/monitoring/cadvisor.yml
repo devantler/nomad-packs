@@ -6,13 +6,13 @@ services:
       - internal
     ports:
       - '8082:8080'
+    command: -logtostderr -docker_only
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /:/rootfs:ro
       - /var/run:/var/run
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk:/dev/disk/:ro
     deploy:
       mode: global
 
