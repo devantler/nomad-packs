@@ -6,7 +6,7 @@ services:
       - internal
     ports:
       - '8082:8080'
-    command: --raw_cgroup_prefix_whitelist=/docker/ --disable_metrics=hugetlb
+    command: --raw_cgroup_prefix_whitelist=/docker/
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /:/rootfs:ro
