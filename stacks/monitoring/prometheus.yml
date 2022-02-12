@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   prometheus:
-    image: prom/prometheus:v2.33.0
+    image: prom/prometheus:v2.33.3
     volumes:
       - prometheus:/prometheus
       - etc_prometheus:/etc/prometheus
