@@ -4,7 +4,8 @@ services:
   plantuml:
     image: devantler/plantuml-server:jetty
     networks:
-      - traefik
+      - public
+      - auth
     deploy:
       labels:
         traefik.enable: "true"
@@ -17,5 +18,7 @@ services:
         traefik.http.middlewares.plantuml-auth.basicauth.users: ${ADMIN_USER:?}:${HASHED_PASSWORD:?},${GUEST_USER:?}:${GUEST_HASHED_PASSWORD:?}
 
 networks:
-  traefik:
+  public:
+    external: true
+  auth:
     external: true

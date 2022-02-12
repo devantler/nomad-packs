@@ -12,7 +12,8 @@ services:
       - pihole_etc_pihole:/etc/pihole
       - pihole_etc_dnsmasq.d:/etc/dnsmasq.d
     networks:
-      - traefik
+      - public
+      - auth
     deploy:
       labels:
         traefik.enable: "true"
@@ -35,7 +36,9 @@ services:
         traefik.udp.services.pihole-udp.loadbalancer.server.port: 53
 
 networks:
-  traefik:
+  public:
+    external: true
+  auth:
     external: true
 
 volumes:

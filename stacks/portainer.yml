@@ -7,7 +7,7 @@ services:
     volumes:
       - portainer_data:/data
     networks:
-      - traefik
+      - public
       - agent_network
     deploy:
       placement:
@@ -40,8 +40,7 @@ services:
       mode: global
 
 networks:
-  traefik:
-    driver: overlay
+  public:
     external: true
   agent_network:
     external: true

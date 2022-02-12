@@ -10,7 +10,7 @@ services:
       - source: prometheus-config
         target: /etc/prometheus/prometheus.yml
     networks:
-      - traefik
+      - public
       - internal
     deploy:
       labels:
@@ -31,7 +31,7 @@ configs:
     external: true
 
 networks:
-  traefik:
+  public:
     external: true
   internal:
     external: true

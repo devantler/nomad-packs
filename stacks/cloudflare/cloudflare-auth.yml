@@ -3,9 +3,9 @@ services:
   cloudflare-auth:
     image: akohlbecker/traefik-auth-cloudflare:2.0
     networks:
-      - traefik
+      - auth
     command: ["--auth-domain", "https://devantler.cloudflareaccess.com"]
 
 networks:
-  traefik:
+  auth:
     external: true
