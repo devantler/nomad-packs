@@ -12,6 +12,7 @@ services:
     networks:
       - public
       - internal
+      - auth
     deploy:
       labels:
         traefik.enable: "true"
@@ -34,5 +35,7 @@ networks:
   public:
     external: true
   internal:
+    external: true
+  auth:
     external: true
     

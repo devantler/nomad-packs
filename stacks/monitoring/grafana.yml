@@ -5,6 +5,7 @@ services:
     networks:
       - public
       - internal
+      - auth
     volumes:
       - grafana:/var/lib/grafana
     environment:
@@ -25,6 +26,8 @@ networks:
   public:
     external: true
   internal:
+    external: true
+  auth:
     external: true
   
 
