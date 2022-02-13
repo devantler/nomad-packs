@@ -5,8 +5,12 @@ services:
     command:
       - '--path.rootfs=/host'
     command:
-      - '--path.rootfs=/host'
-    network_mode: host
+    networks:
+      - host
     pid: host
     volumes:
       - '/:/host:ro,rslave'
+      
+networks:
+  host:
+    external: true
