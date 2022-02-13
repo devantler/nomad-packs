@@ -8,6 +8,8 @@ services:
       - host
     volumes:
       - '/:/host:ro,rslave'
+    deploy:
+      mode: global
       
 networks:
   host:
