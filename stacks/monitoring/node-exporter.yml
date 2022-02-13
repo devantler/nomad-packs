@@ -4,7 +4,6 @@ services:
     image: prom/node-exporter:v1.3.1
     command:
       - '--path.rootfs=/host'
-    command:
     networks:
       - host
     pid: host
