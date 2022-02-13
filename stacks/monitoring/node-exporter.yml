@@ -6,7 +6,6 @@ services:
       - '--path.rootfs=/host'
     networks:
       - host
-    pid: host
     volumes:
       - '/:/host:ro,rslave'
       
