@@ -18,7 +18,7 @@ services:
         traefik.http.services.uptime-kuma.loadbalancer.server.port: 3001
         traefik.http.routers.uptime-kuma.service: "uptime-kuma"
         traefik.http.routers.uptime-kuma.middlewares: uptime-kuma-auth@docker
-        traefik.http.middlewares.uptime-kuma-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
+        traefik.http.middlewares.uptime-kuma-auth.forwardauth.address: http://cloudflare-auth:8085/auth/${CLOUDFLARE_AUTH_AUD:?}
 
 volumes:
   uptime-kuma:
