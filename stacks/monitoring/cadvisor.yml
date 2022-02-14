@@ -4,8 +4,6 @@ services:
     image: zcube/cadvisor:v0.39.3
     networks:
       - internal
-    ports:
-      - '8082:8080'
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run:ro 

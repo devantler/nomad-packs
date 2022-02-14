@@ -11,7 +11,6 @@ services:
         target: /etc/prometheus/prometheus.yml
     networks:
       - internal
-      - auth
 
 volumes:
   prometheus:
@@ -22,7 +21,5 @@ configs:
 
 networks:
   internal:
-    external: true
-  auth:
     external: true
     
