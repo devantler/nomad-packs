@@ -1,5 +1,5 @@
 {
   "docker-compose": {
-    "fileMatch": ["(^|\/)[^/]*\.ya?ml$"]
+    "fileMatch": ["(^|/)docker-compose[^/]*\.ya?ml$"]
   }
 }
