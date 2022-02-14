@@ -25,7 +25,7 @@ services:
         traefik.http.routers.grafana.service: "grafana"
         traefik.http.services.grafana.loadbalancer.server.port: 3000
         traefik.http.routers.grafana.middlewares: grafana-auth@docker
-        traefik.http.middlewares.grafana-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
+        traefik.http.middlewares.grafana-auth.forwardauth.address: http://cloudflare-auth:8085/auth/${CLOUDFLARE_AUTH_AUD:?}
 
 networks:
   public:
