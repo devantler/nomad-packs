@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  devantler-cms:
+    image: devantler-cms:1.0.0
+    ports:
+      - 5000:5000
+  piranha-db:
+    image: mcr.microsoft.com/azure-sql-edge:1.0.5
+    environment:
+        MSSQL_SA_PASSWORD: ${DATABASE:-?}
+        ACCEPT_EULA: 1
