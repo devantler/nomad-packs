@@ -6,6 +6,8 @@ services:
    networks:
     - public
     - internal
+  environment:
+    ConnectionsStrings__Database=Server=piranha-db;Database=master;User=sa;Password=${DB-PASSWORD:-?}
   deploy:
     labels:
       traefik.enable: "true"
@@ -17,7 +19,7 @@ services:
   piranha-db:
     image: mcr.microsoft.com/azure-sql-edge:1.0.5
     networks:
-    - internal
+      - internal
     environment:
       MSSQL_SA_PASSWORD: ${DB-PASSWORD:-?}
       ACCEPT_EULA: 1
