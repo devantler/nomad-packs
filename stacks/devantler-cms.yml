@@ -1,12 +1,29 @@
 version: '3.8'
 
 services:
-  devantler-cms:
-    image: devantler-cms:1.0.0
-    ports:
-      - 5000:5000
+  devantlercms:
+    image: devantler-cms:v1.0.0
+   networks:
+    - public
+    - internal
+  deploy:
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.devantler-cms.rule: "Host(`${DOMAIN:?}`)"
+      traefik.http.routers.devantler-cms.entrypoints: "websecure"
+      traefik.http.routers.devantler-cms.tls.certresolver: "letsencrypt"
+      traefik.http.routers.devantler-cms.service: "devantler-cms"
+      traefik.http.services.devantler-cms.loadbalancer.server.port: 5000
   piranha-db:
     image: mcr.microsoft.com/azure-sql-edge:1.0.5
+    networks:
+    - internal
     environment:
-        MSSQL_SA_PASSWORD: ${DATABASE:-?}
-        ACCEPT_EULA: 1
+      MSSQL_SA_PASSWORD: ${DB-PASSWORD:-?}
+      ACCEPT_EULA: 1
+
+networks:
+  public:
+    external: true
+  internal:
+    external: true
