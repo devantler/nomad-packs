@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   devantlercms:
-    image: devantler-cms:v1.0.0
+   image: devantler-cms:v1.0.0
    networks:
     - public
     - internal
