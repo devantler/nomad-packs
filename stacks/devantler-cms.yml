@@ -7,7 +7,7 @@ services:
     - public
     - internal
   environment:
-    ConnectionStrings__Database: Server=piranha-db;Database=master;User=sa;Password=${DB-PASSWORD:-?}
+    - ConnectionStrings__Database=Server=piranha-db;Database=master;User=sa;Password=${DB-PASSWORD:-?}
   deploy:
     labels:
       traefik.enable: "true"
