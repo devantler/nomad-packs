@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   keepalived:
@@ -12,7 +12,7 @@ services:
     deploy:
       mode: global
       placement:
-        constraints: 
+        constraints:
           - node.role == manager
 
 networks:
