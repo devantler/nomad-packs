@@ -19,16 +19,14 @@ services:
         traefik.http.routers.devantler-cms.service: "devantler-cms"
         traefik.http.services.devantler-cms.loadbalancer.server.port: 5000
   piranha-db:
-    image: mysql:8.0.28-oracle
+    image: mcr.microsoft.com/azure-sql-edge:1.0.5
     volumes:
-      - piranha-db:/var/lib/mysql
+      - piranha-db:/var/opt/mssql
     networks:
       - internal
     environment:
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?}
-      MYSQL_DATABASE: piranha
-      MYSQL_USER: ${DB_USER:?}
-      MYSQL_PASSWORD: ${DB_PASSWORD:?}
+      MSSQL_SA_PASSWORD: ${DB-PASSWORD:?}
+      ACCEPT_EULA: 1
 
 volumes:
   devantler-cms:
