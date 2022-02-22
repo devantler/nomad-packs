@@ -14,9 +14,6 @@ services:
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
-    deploy:
-      labels:
-        io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
 
 networks:
   host:
