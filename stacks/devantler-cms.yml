@@ -22,6 +22,8 @@ services:
     image: mysql:8.0.28-oracle
     volumes:
       - piranha-db:/var/lib/mysql
+    networks:
+      - internal
     environment:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?}
       MYSQL_DATABASE: piranha
