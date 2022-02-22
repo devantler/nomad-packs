@@ -7,11 +7,10 @@ services:
       WG_HOST: vpn.${DOMAIN:?}
       WG_DEFAULT_DNS: ${DEFAULT_DNS:-192.168.1.200}
       PASSWORD: ${PASSWORD:?}
-    ports:
-      - 51820:51820/udp
-      - 51821:51821/tcp
     volumes:
       - wireguard_etc_wireguard:/etc/wireguard
+    networks:
+      - host
     cap_add:
       - NET_ADMIN
       - SYS_MODULE
@@ -21,6 +20,10 @@ services:
     deploy:
       labels:
         io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
+
+networks:
+  host:
+    external: true
 
 volumes:
   wireguard_etc_wireguard:
