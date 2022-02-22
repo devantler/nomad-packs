@@ -23,6 +23,7 @@ services:
 
 networks:
   host:
+    name: host
     external: true
 
 volumes:
