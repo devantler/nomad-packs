@@ -2,14 +2,14 @@ version: "3.8"
 
 services:
   devantler-cms:
-    image: devantler/devantler-cms:v0.0.7
+    image: devantler/devantler-cms:v0.0.8
     networks:
       - public
       - internal
     volumes:
       - devantler-cms:/app
     environment:
-      ConnectionStrings__Database: Server=piranha-db;Database=piranha;User=${DB_USER:?};Password=${DB_PASSWORD:?}
+      ConnectionStrings__Database: Server=piranha-db;Database=master;User=sa;Password=${DB_PASSWORD:?}
     deploy:
       labels:
         traefik.enable: "true"
