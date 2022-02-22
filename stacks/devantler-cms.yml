@@ -21,7 +21,7 @@ services:
     networks:
       - internal
     environment:
-      MSSQL_SA_PASSWORD: ${DB-PASSWORD:?}
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD:?}
       ACCEPT_EULA: 1
 
 networks:
