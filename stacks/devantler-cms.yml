@@ -22,7 +22,6 @@ services:
       - internal
     environment:
       MSSQL_SA_PASSWORD: ${DB-PASSWORD:-?}
-      MSSQL_PID: Premium
       ACCEPT_EULA: 1
 
 networks:
