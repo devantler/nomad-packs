@@ -22,7 +22,7 @@ services:
     image: mcr.microsoft.com/azure-sql-edge:1.0.5
     user: root
     volumes:
-      - piranha-db:/var/opt/mssql/data
+      - piranha-db:/var/opt/mssql
     networks:
       - internal
     environment:
