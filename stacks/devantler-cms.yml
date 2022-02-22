@@ -7,7 +7,7 @@ services:
       - public
       - internal
     volumes:
-      - devantler-cms:/app
+      - devantler-cms:/app/wwwroot
     environment:
       ConnectionStrings__Database: Server=piranha-db;Database=master;User=sa;Password=${DB_PASSWORD:?}
     deploy:
