@@ -24,6 +24,8 @@ services:
     volumes:
       - piranha-db-mssql:/var/opt/mssql
       - piranha-db-mssql-extensibility:/var/opt/mssql-extensibility
+      - piranha-db-mssql-extensibility-data:/var/opt/mssql-extensibility/data
+      - piranha-db-mssql-extensibility-log:/var/opt/mssql-extensibility/log
     networks:
       - internal
     environment:
@@ -34,6 +36,9 @@ volumes:
   devantler-cms:
   piranha-db-mssql:
   piranha-db-mssql-extensibility:
+  piranha-db-mssql-extensibility-data:
+  piranha-db-mssql-extensibility-log:
+  
   
 networks:
   public:
