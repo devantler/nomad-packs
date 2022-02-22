@@ -6,9 +6,10 @@ services:
     networks:
       - public
       - internal
+    volumes:
+      - devantler-cms:/app
     environment:
-      ConnectionStrings__Database: Server=piranha-db;Database=master;User=sa;Password=${DB_PASSWORD:?}
-      ASPNETCORE_ENVIRONMENT: Production
+      ConnectionStrings__Database: Server=piranha-db;Database=piranha;User=${DB_USER:?};Password=${DB_PASSWORD:?}
     deploy:
       labels:
         traefik.enable: "true"
@@ -18,13 +19,19 @@ services:
         traefik.http.routers.devantler-cms.service: "devantler-cms"
         traefik.http.services.devantler-cms.loadbalancer.server.port: 5000
   piranha-db:
-    image: mcr.microsoft.com/azure-sql-edge:1.0.5
-    networks:
-      - internal
+    image: mysql:8.0.28-oracle
+    volumes:
+      - piranha-db:/var/lib/mysql
     environment:
-      MSSQL_SA_PASSWORD: ${DB_PASSWORD:?}
-      ACCEPT_EULA: 1
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?}
+      MYSQL_DATABASE: piranha
+      MYSQL_USER: ${DB_USER:?}
+      MYSQL_PASSWORD: ${DB_PASSWORD:?}
 
+volumes:
+  devantler-cms:
+  piranha-db:
+  
 networks:
   public:
     external: true
