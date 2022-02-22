@@ -7,7 +7,7 @@ services:
       - public
       - internal
     environment:
-      ConnectionStrings__Database: Server=piranha-db;Database=master;User=sa;Password=${DB-PASSWORD:-?}
+      ConnectionStrings__Database: Server=piranha-db;Database=master;User=sa;Password=${DB-PASSWORD:?}
     deploy:
       labels:
         traefik.enable: "true"
@@ -21,7 +21,7 @@ services:
     networks:
       - internal
     environment:
-      MSSQL_SA_PASSWORD: ${DB-PASSWORD:-?}
+      MSSQL_SA_PASSWORD: ${DB-PASSWORD:?}
       ACCEPT_EULA: 1
 
 networks:
