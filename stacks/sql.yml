@@ -1,0 +1,14 @@
+  
+  sql:
+    image: mcr.microsoft.com/azure-sql-edge:1.0.5
+    user: root
+    volumes:
+      - piranha-db:/var/opt/mssql
+      - piranha-db:/var/opt/mssql-extensibility
+      - piranha-db:/var/opt/mssql-extensibility/data
+      - piranha-db:/var/opt/mssql-extensibility/log
+    networks:
+      - internal
+    environment:
+      MSSQL_SA_PASSWORD: ${DB_PASSWORD:?}
+      ACCEPT_EULA: 1
