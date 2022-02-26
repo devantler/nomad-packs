@@ -12,7 +12,7 @@ services:
     networks:
       - internal
     environment:
-      MSSQL_SA_PASSWORD: ${DB_PASSWORD:?}
+      MSSQL_SA_PASSWORD: ${PASSWORD:?}
       ACCEPT_EULA: 1
 
 volumes:
