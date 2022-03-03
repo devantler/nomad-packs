@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   devantler-cms:
-    image: ghcr.io/devantler/devantler-cms:dev
+    image: ghcr.io/devantler/devantler-cms:main
     networks:
       - public
       - internal
