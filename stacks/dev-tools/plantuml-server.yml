@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   plantuml:
-    image: devantler/plantuml-server:jetty
+    image: plantuml/plantuml-server:v1.2022.2
     networks:
       - public
       - auth
