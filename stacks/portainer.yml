@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   portainer:
-    image: portainer/portainer-ee:2.12.0
+    image: portainer/portainer-ee:2.12.1
     command: -H tcp://tasks.agent:9001 --tlsskipverify
     volumes:
       - portainer_data:/data
