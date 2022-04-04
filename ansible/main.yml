@@ -5,7 +5,6 @@
     - geerlingguy.git
     - geerlingguy.pip
     - geerlingguy.docker_arm
-    - xanmanning.k3s
     - role: jnv.unattended-upgrades
       unattended_origins_patterns:
           - 'origin=Raspbian,codename=${distro_codename},label=Raspbian'  
