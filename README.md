@@ -1,3 +1,6 @@
+This repo is currently in the phase of migrating to k3s and helm charts along with the use of ansible to automate node setup.
+
+
 # HA Docker Swarm cluster with Traefik and Portainer
 
 This repo contains deployable stacks for a secure and fully docker-managed cluster. It includes Portainer, Traefik, Wireguard and Keepalived. These tools together enable a high-availability cluster that you can easily deploy stacks to. Wireguard is a fast and secure VPN that allows you to gain access to your cluster remotely.
