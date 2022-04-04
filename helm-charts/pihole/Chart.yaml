@@ -1,0 +1,8 @@
+apiVersion: v2
+name: pihole
+type: application
+version: "2.5.8"
+dependencies: 
+- name: pihole
+  version: "2.5.8"
+  repository: "@pihole"
