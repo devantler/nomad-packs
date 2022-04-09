@@ -12,9 +12,6 @@ services:
     volumes:
       - pihole_etc_pihole:/etc/pihole
       - pihole_etc_dnsmasq.d:/etc/dnsmasq.d
-    ports:
-      - 53:53/udp
-      - 53:53/tcp
     networks:
       - public
     deploy:
