@@ -10,6 +10,8 @@ services:
       - --providers.docker.exposedbydefault=false
       - --providers.docker.network=public
       # Configure entrypoint
+      - --entrypoints.dns-tcp.address=:53/tcp
+      - --entrypoints.dns-udp.address=:53/udp
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
       # SSL configuration
@@ -25,6 +27,8 @@ services:
       CF_API_EMAIL: ${EMAIL:?}
       CF_DNS_API_TOKEN: ${CLOUDFLARE_DNS_API_TOKEN:?}
     ports:
+      - 53:53/tcp # dns
+      - 53:53/udp # dns
       - 80:80 # http
       - 443:443 # https
     networks:
