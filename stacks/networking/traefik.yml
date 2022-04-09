@@ -11,8 +11,6 @@ services:
       - --providers.docker.network=public
       # Configure entrypoint
       - --entrypoints.web.address=:80
-      - --entrypoints.pihole-tcp.address=:53/tcp
-      - --entrypoints.pihole-udp.address=:53/udp
       - --entrypoints.websecure.address=:443
       # SSL configuration
       - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
@@ -28,8 +26,6 @@ services:
       CF_DNS_API_TOKEN: ${CLOUDFLARE_DNS_API_TOKEN:?}
     ports:
       - 80:80 # http
-      - 53:53/tcp # pihold-tcp
-      - 53:53/udp # pihole-udp
       - 443:443 # https
     networks:
       - public
