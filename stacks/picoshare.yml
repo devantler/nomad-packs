@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  picoshare:
+    image: mtlynch/picoshare:1.0.7
+    networks:
+      - public
+    environment:
+      PORT: 3001
+      PS_SHARED_SECRET: "${PS_SHARED_SECRET:?}"
+    volumes:
+      - picoshare_data:/data
+    deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.http.routers.picoshare.rule: "Host(`picoshare.${DOMAIN:?}`)"
+        traefik.http.routers.picoshare.entrypoints: "websecure"
+        traefik.http.routers.picoshare.tls.certresolver: "letsencrypt"
+        traefik.http.services.picoshare.loadbalancer.server.port: 3001
+        traefik.http.routers.picoshare.service: "picoshare"
+
+networks:
+  public:
+    external: true
+
+volumes:
+  picoshare_data:

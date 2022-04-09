@@ -1,0 +1,10 @@
+- name: InitializeNodes 
+  hosts: nodes
+  become: yes
+  roles:
+    - geerlingguy.git
+    - geerlingguy.pip
+    - geerlingguy.docker_arm
+    - role: jnv.unattended-upgrades
+      unattended_origins_patterns:
+          - 'origin=Raspbian,codename=${distro_codename},label=Raspbian'  

@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  devantler-cms:
+    image: ghcr.io/devantler/devantler-cms:main
+    networks:
+      - public
+      - internal
+    volumes:
+      - devantler-cms:/app/wwwroot
+    environment:
+      ConnectionStrings__Database: Server=sql;Database=piranha-db;User=sa;Password=${DB_PASSWORD:?}
+    deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.http.routers.devantler-cms.rule: "Host(`${DOMAIN:?}`)"
+        traefik.http.routers.devantler-cms.entrypoints: "websecure"
+        traefik.http.routers.devantler-cms.tls.certresolver: "letsencrypt"
+        traefik.http.routers.devantler-cms.service: "devantler-cms"
+        traefik.http.services.devantler-cms.loadbalancer.server.port: 5000
+
+volumes:
+  devantler-cms:
+  
+networks:
+  public:
+    external: true
+  internal:
+    external: true

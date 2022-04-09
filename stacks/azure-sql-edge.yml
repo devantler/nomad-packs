@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  sql:
+    image: mcr.microsoft.com/azure-sql-edge:1.0.5
+    user: root
+    volumes:
+      - sql:/var/opt/mssql
+      - sql:/var/opt/mssql-extensibility
+      - sql:/var/opt/mssql-extensibility/data
+      - sql:/var/opt/mssql-extensibility/log
+    networks:
+      - internal
+    environment:
+      MSSQL_SA_PASSWORD: ${PASSWORD:?}
+      ACCEPT_EULA: 1
+
+volumes:
+  sql:
+  
+networks:
+  internal:
+    external: true

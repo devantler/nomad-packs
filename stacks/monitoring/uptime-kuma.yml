@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1.13.2
+    volumes:
+      - uptime-kuma:/app/data
+    networks:
+      - public
+      - internal
+    deploy:
+      labels:
+        traefik.enable: "true"
+        traefik.http.routers.uptime-kuma.rule: "Host(`uptime.${DOMAIN:?}`)"
+        traefik.http.routers.uptime-kuma.entrypoints: "websecure"
+        traefik.http.routers.uptime-kuma.tls.certresolver: "letsencrypt"
+        traefik.http.services.uptime-kuma.loadbalancer.server.port: 3001
+        traefik.http.routers.uptime-kuma.service: "uptime-kuma"
+        traefik.http.routers.uptime-kuma.middlewares: uptime-kuma-auth@docker
+        traefik.http.middlewares.uptime-kuma-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
+
+volumes:
+  uptime-kuma:
+
+networks:
+  public:
+    external: true
+  internal:
+    external: true
