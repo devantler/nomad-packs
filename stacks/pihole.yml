@@ -35,7 +35,7 @@ services:
         traefik.tcp.routers.pihole-tcp.service: pihole-tcp
         traefik.tcp.services.pihole-tcp.loadbalancer.server.port: 53
 
-      ## UDP Routers/Services
+         ## UDP Routers/Services
         traefik.udp.routers.pihole-udp.entrypoints: dns-udp
         traefik.udp.routers.pihole-udp.service: pihole-udp
         traefik.udp.services.pihole-udp.loadbalancer.server.port: 53

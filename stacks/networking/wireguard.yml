@@ -5,18 +5,14 @@ services:
     image: weejewel/wg-easy:5
     environment:
       WG_HOST: vpn.${DOMAIN:?}
-      WG_DEFAULT_DNS: ${DEFAULT_DNS:-192.168.1.201}
+      WG_DEFAULT_DNS: ${DEFAULT_DNS:-192.168.1.200}
       PASSWORD: ${PASSWORD:?}
       WG_PERSISTENT_KEEPALIVE: 15
     volumes:
-      - wireguard_etc_wireguard:/etc/wireguard
+      - wireguard:/etc/wireguard
     networks:
       - bridge
     ports:
-      - target: 51820
-        published: 51820
-        protocol: udp
-        mode: host
       - target: 51821
         published: 51821
         protocol: tcp
@@ -30,11 +26,17 @@ services:
     deploy:
       placement:
         constraints:
-          - 'node.hostname == manager1' 
+          - 'node.hostname == manager1'
+      labels:
+        traefik.enable: true
+        ## UDP Routers/Services
+        traefik.udp.routers.wireguard-udp.entrypoints: vpn-udp
+        traefik.udp.routers.wireguard-udp.service: wireguard-udp
+        traefik.udp.services.wireguard-udp.loadbalancer.server.port: 51820
           
 networks:
   bridge:
    external: true
 
 volumes:
-  wireguard_etc_wireguard:
+  wireguard:

@@ -14,6 +14,7 @@ services:
       - --entrypoints.dns-udp.address=:53/udp
       - --entrypoints.web.address=:80
       - --entrypoints.websecure.address=:443
+      - --entrypoints.vpn-udp.address=:51820/udp
       # SSL configuration
       - --certificatesresolvers.letsencrypt.acme.dnschallenge=true
       - --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare
@@ -31,6 +32,7 @@ services:
       - 53:53/udp # dns
       - 80:80 # http
       - 443:443 # https
+      - 51820:51820 # vpn
     networks:
       - public
       - auth
