@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   plantuml:
-    image: plantuml/plantuml-server:v1.2022.3
+    image: plantuml/plantuml-server:v1.2022.4
     networks:
       - public
     deploy:
