@@ -7,11 +7,11 @@ services:
       VIRTUAL_HOST: pihole.${DOMAIN:?}
       TZ: "Europe/Copenhagen"
       PIHOLE_DNS_: 1.1.1.1
-      DNSMASQ_LISTENING: all
+      # DNSMASQ_LISTENING: all
       WEBPASSWORD: ""
     volumes:
-      - pihole_etc_pihole:/etc/pihole
-      - pihole_etc_dnsmasq.d:/etc/dnsmasq.d
+      - pihole:/etc/pihole
+      - pihole:/etc/dnsmasq.d
     networks:
       - public
     deploy:
@@ -45,5 +45,4 @@ networks:
     external: true
 
 volumes:
-  pihole_etc_pihole:
-  pihole_etc_dnsmasq.d:
+  pihole:
