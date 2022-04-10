@@ -5,13 +5,13 @@ services:
     image: weejewel/wg-easy:5
     environment:
       WG_HOST: vpn.${DOMAIN:?}
-      WG_DEFAULT_DNS: ${DEFAULT_DNS:-192.168.1.201}
+      WG_DEFAULT_DNS: ${DEFAULT_DNS:-192.168.1.200}
       PASSWORD: ${PASSWORD:?}
       WG_PERSISTENT_KEEPALIVE: 15
     volumes:
       - wireguard_etc_wireguard:/etc/wireguard
     networks:
-      - bridge
+      - public
     ports:
       - target: 51820
         published: 51820
@@ -33,8 +33,8 @@ services:
           - 'node.hostname == manager1' 
           
 networks:
-  bridge:
-   external: true
+  public:
+    external: true
 
 volumes:
   wireguard_etc_wireguard:

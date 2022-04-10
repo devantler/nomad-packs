@@ -1,0 +1,6 @@
+- name: ShutdownNodes 
+  hosts: nodes
+  become: yes
+  tasks:
+  - name: ShutdownNodes
+    shell: shutdown now
