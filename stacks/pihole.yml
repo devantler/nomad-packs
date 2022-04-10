@@ -30,7 +30,7 @@ services:
         traefik.http.services.pihole.loadbalancer.server.port: 80
         
         ## TCP Routers/Service
-        traefik.tcp.routers.pihole-tcp.entrypoints: dns
+        traefik.tcp.routers.pihole-tcp.entrypoints: dns-tcp
         traefik.tcp.routers.pihole-tcp.rule: HostSNI(`*`)
         traefik.tcp.routers.pihole-tcp.service: pihole-tcp
         traefik.tcp.services.pihole-tcp.loadbalancer.server.port: 53
