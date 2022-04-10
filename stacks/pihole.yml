@@ -7,11 +7,11 @@ services:
       VIRTUAL_HOST: pihole.${DOMAIN:?}
       TZ: "Europe/Copenhagen"
       PIHOLE_DNS_: 1.1.1.1
-      DNSMASQ_LISTENING: all
+      # DNSMASQ_LISTENING: all
       WEBPASSWORD: ""
     volumes:
-      - pihole_etc_pihole:/etc/pihole
-      - pihole_etc_dnsmasq.d:/etc/dnsmasq.d
+      - etc_pihole:/etc/pihole
+      - etc_dnsmasq.d:/etc/dnsmasq.d
     networks:
       - public
     deploy:
@@ -30,12 +30,12 @@ services:
         traefik.http.services.pihole.loadbalancer.server.port: 80
         
         ## TCP Routers/Service
-        traefik.tcp.routers.pihole-tcp.entrypoints: dns
+        traefik.tcp.routers.pihole-tcp.entrypoints: dns-tcp
         traefik.tcp.routers.pihole-tcp.rule: HostSNI(`*`)
         traefik.tcp.routers.pihole-tcp.service: pihole-tcp
         traefik.tcp.services.pihole-tcp.loadbalancer.server.port: 53
 
-      ## UDP Routers/Services
+         ## UDP Routers/Services
         traefik.udp.routers.pihole-udp.entrypoints: dns-udp
         traefik.udp.routers.pihole-udp.service: pihole-udp
         traefik.udp.services.pihole-udp.loadbalancer.server.port: 53
@@ -45,5 +45,5 @@ networks:
     external: true
 
 volumes:
-  pihole_etc_pihole:
-  pihole_etc_dnsmasq.d:
+  etc_pihole:
+  etc_dnsmasq.d:

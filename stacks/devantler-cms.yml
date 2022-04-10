@@ -7,7 +7,7 @@ services:
       - public
       - internal
     volumes:
-      - devantler-cms:/app/wwwroot
+      - app_wwwroot:/app/wwwroot
     environment:
       ConnectionStrings__Database: Server=sql;Database=piranha-db;User=sa;Password=${DB_PASSWORD:?}
     deploy:
@@ -20,7 +20,7 @@ services:
         traefik.http.services.devantler-cms.loadbalancer.server.port: 5000
 
 volumes:
-  devantler-cms:
+  app_wwwroot:
   
 networks:
   public:

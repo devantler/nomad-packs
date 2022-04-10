@@ -4,7 +4,7 @@ services:
   uptime-kuma:
     image: louislam/uptime-kuma:1.13.2
     volumes:
-      - uptime-kuma:/app/data
+      - app_data:/app/data
     networks:
       - public
       - internal
@@ -20,7 +20,7 @@ services:
         traefik.http.middlewares.uptime-kuma-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
 
 volumes:
-  uptime-kuma:
+  app_data:
 
 networks:
   public:
