@@ -41,6 +41,7 @@ services:
       placement:
         constraints:
           - node.role == manager
+          - node.hostname == manager1
 
 networks:
   public:
