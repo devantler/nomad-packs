@@ -5,7 +5,7 @@ services:
     image: portainer/portainer-ee:2.12.2
     command: -H tcp://tasks.agent:9001 --tlsskipverify
     volumes:
-      - portainer_data:/data
+      - data:/data
     networks:
       - public
       - agent_network
@@ -48,4 +48,4 @@ networks:
     external: true
 
 volumes:
-  portainer_data:
+  data:

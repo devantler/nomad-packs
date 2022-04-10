@@ -9,7 +9,7 @@ services:
       PORT: 3001
       PS_SHARED_SECRET: "${PS_SHARED_SECRET:?}"
     volumes:
-      - picoshare_data:/data
+      - data:/data
     deploy:
       labels:
         traefik.enable: "true"
@@ -24,4 +24,4 @@ networks:
     external: true
 
 volumes:
-  picoshare_data:
+  data:

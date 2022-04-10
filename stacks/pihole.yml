@@ -10,8 +10,8 @@ services:
       # DNSMASQ_LISTENING: all
       WEBPASSWORD: ""
     volumes:
-      - pihole:/etc/pihole
-      - pihole:/etc/dnsmasq.d
+      - etc_pihole:/etc/pihole
+      - etc_dnsmasq.d:/etc/dnsmasq.d
     networks:
       - public
     deploy:
@@ -45,4 +45,5 @@ networks:
     external: true
 
 volumes:
-  pihole:
+  etc_pihole:
+  etc_dnsmasq.d:
