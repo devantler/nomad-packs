@@ -29,19 +29,6 @@ services:
         traefik.udp.routers.adguardhome-dns-udp.entrypoints: dns-udp
         traefik.udp.routers.adguardhome-dns-udp.service: adguardhome-dns-udp
         traefik.udp.services.adguardhome-dns-udp.loadbalancer.server.port: 53
-        ## DHCP server/TCP
-        #traefik.tcp.routers.adguardhome-dhcp-tcp.entrypoints: dhcp-tcp
-        #traefik.tcp.routers.adguardhome-dhcp-tcp.rule: HostSNI(`*`)
-        #traefik.tcp.routers.adguardhome-dhcp-tcp.service: adguardhome-dhcp-tcp
-        #traefik.tcp.services.adguardhome-dhcp-tcp.loadbalancer.server.port: 68
-        ## DHCP server/UDP1
-        #traefik.udp.routers.adguardhome-dhcp-udp1.entrypoints: dhcp-udp1
-        #traefik.udp.routers.adguardhome-dhcp-udp1.service: adguardhome-dhcp-udp1
-        #traefik.udp.services.adguardhome-dhcp-udp1.loadbalancer.server.port: 67
-        ## DHCP server/UDP2
-        #traefik.udp.routers.adguardhome-dhcp-udp2.entrypoints: dhcp-udp2
-        #traefik.udp.routers.adguardhome-dhcp-udp2.service: adguardhome-dhcp-udp2
-        #traefik.udp.services.adguardhome-dhcp-udp2.loadbalancer.server.port: 68
         
 networks:
   public:
@@ -49,4 +36,12 @@ networks:
 
 volumes:
   opt_adguardhome_work:
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER:?}
+      device: :/opt/adguardhome/work
   opt_adguardhome_conf:
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER:?}
+      device: :/opt/adguardhome/conf

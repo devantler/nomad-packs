@@ -8,6 +8,6 @@ You need to first install Ansible and then run the following:
 - `ansible-galaxy install xanmanning.k3s`
 - `ansible-galaxy install jnv.unattended-upgrades`
 
-Next, you can run the `main.yml` playbook to initialize new nodes with Git, Docker, Docker Compose, K3S and unattended-upgrades.
+Next, you can run the `setup.yml` playbook to initialize new nodes with Git, Docker, Docker Compose and unattended-upgrades.
 
-- `ansible-playbook main.yml`
+- `ansible-playbook setup.yml`

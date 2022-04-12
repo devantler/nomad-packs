@@ -34,7 +34,6 @@ services:
     networks:
       - public
       - auth
-      - storage
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - letsencrypt:/letsencrypt
@@ -47,10 +46,12 @@ services:
 networks:
   public:
     external: true
-  storage:
-    external: true
   auth:
     external: true
 
 volumes:
-  letsencrypt: null
+  letsencrypt:
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER:?}
+      device: :/letsencrypt

@@ -12,7 +12,6 @@ services:
       - etc_wireguard:/etc/wireguard
     networks:
       - public
-      - storage
       - bridge
     ports:
       - 51820:51820/udp
@@ -39,8 +38,6 @@ services:
 
 networks:
   public:
-    external: true
-  storage:
     external: true
   bridge:
     external: true

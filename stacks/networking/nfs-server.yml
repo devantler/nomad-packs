@@ -7,9 +7,7 @@ services:
       - SYS_ADMIN
       - SETPCAP
     volumes:
-      - nfs-share:/nfs-share
-    networks:
-      - storage
+      - ${NFS_SHARE_PATH}:/nfs-share
     deploy:
       labels:
         io.portainerhack.cap_add: SYS_ADMIN,SETPCAP
@@ -17,10 +15,3 @@ services:
         constraints:
           - node.role == manager
           - node.hostname == manager1
-
-volumes:
-  nfs-share:
-
-networks:
-  storage:
-    external: true
