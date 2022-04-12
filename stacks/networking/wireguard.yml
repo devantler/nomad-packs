@@ -44,3 +44,7 @@ networks:
 
 volumes:
   etc_wireguard:
+    driver_opts:
+      type: "nfs"
+      o: "addr=${NFS_SERVER:?},vers=4.1,nolock,proto=tcp"
+      device: "etc/wireguard"
