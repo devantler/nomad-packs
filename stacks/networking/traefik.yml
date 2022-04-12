@@ -47,6 +47,7 @@ networks:
   public:
     external: true
   auth:
+    external: true
 
 volumes:
   letsencrypt: null
