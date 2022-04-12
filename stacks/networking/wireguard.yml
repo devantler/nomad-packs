@@ -25,6 +25,7 @@ services:
         constraints:
           - 'node.hostname == manager1'
       labels:
+        io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
         traefik.enable: true
         traefik.http.routers.wireguard.service: "wireguard"
         traefik.http.routers.wireguard.rule: "Host(`wireguard.${DOMAIN:?}`)"

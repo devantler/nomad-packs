@@ -4,4 +4,3 @@
   tasks:
   - name: Reboot nodes
     reboot:
-      reboot_timeout: 300
