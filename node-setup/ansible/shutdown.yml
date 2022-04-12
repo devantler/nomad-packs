@@ -1,6 +1,6 @@
-- name: ShutdownNodes 
+- name: Shutdown nodes 
   hosts: nodes
   become: yes
   tasks:
-  - name: ShutdownNodes
-    shell: shutdown now
+    - name: Shutdown nodes
+      community.general.shutdown:

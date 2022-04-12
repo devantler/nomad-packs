@@ -13,9 +13,8 @@ services:
           - node.hostname == manager1
       labels:
         traefik.enable: "true"
-        ## HTTPS
         traefik.http.routers.adguardhome-https.service: "adguardhome-https"
-        traefik.http.routers.adguardhome-https.rule: "Host(`pihole.${DOMAIN:?}`)"
+        traefik.http.routers.adguardhome-https.rule: "Host(`adguard.${DOMAIN:?}`)"
         traefik.http.routers.adguardhome-https.entrypoints: "websecure"
         traefik.http.routers.adguardhome-https.tls.certresolver: "letsencrypt"
         traefik.http.services.adguardhome-https.loadbalancer.server.port: 3000

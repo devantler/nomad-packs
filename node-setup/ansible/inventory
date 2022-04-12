@@ -1,9 +1,12 @@
 [nodes]
-manager1.local
-manager2.local
-manager3.local
+manager1
+manager2
+manager3
+
+[master]
+manager1
 
 [managers]
-manager1.local
-manager2.local
-manager3.local
+manager1
+manager2
+manager3

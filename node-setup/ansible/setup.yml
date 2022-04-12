@@ -1,4 +1,4 @@
-- name: InitializeNodes 
+- name: Initialize nodes 
   hosts: nodes
   become: yes
   roles:

@@ -1,6 +1,7 @@
-- name: RebootNodes 
+- name: Reboot nodes 
   hosts: nodes
   become: yes
   tasks:
-  - name: RebootNodes
-    shell: reboot
+  - name: Reboot nodes
+    reboot:
+      reboot_timeout: 300
