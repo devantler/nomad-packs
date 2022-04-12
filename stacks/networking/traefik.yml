@@ -34,7 +34,7 @@ services:
     networks:
       - public
       - auth
-      - internal
+      - storage
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - letsencrypt:/letsencrypt
@@ -47,7 +47,7 @@ services:
 networks:
   public:
     external: true
-  internal:
+  storage:
     external: true
   auth:
     external: true
