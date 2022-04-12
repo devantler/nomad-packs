@@ -34,6 +34,7 @@ services:
     networks:
       - public
       - auth
+      - internal
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - letsencrypt:/letsencrypt
@@ -45,6 +46,8 @@ services:
 
 networks:
   public:
+    external: true
+  internal:
     external: true
   auth:
     external: true

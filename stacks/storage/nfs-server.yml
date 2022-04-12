@@ -10,6 +10,8 @@ services:
       - SETPCAP
     volumes:
       - nfs-share:/nfs-share
+    networks:
+      - internal
     deploy:
       labels:
         io.portainerhack.cap_add: SYS_ADMIN,SETPCAP
@@ -20,3 +22,7 @@ services:
 
 volumes:
   nfs-share:
+
+networks:
+  internal:
+    external: true
