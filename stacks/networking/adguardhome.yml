@@ -1,0 +1,53 @@
+version: "3.8"
+services:
+  adguardhome:
+    image: adguard/adguardhome:latest
+    volumes:
+      - opt_adguardhome_work:/opt/adguardhome/work
+      - opt_adguardhome_conf:/opt/adguardhome/conf
+    networks:
+      - public
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == manager1
+      labels:
+        traefik.enable: "true"
+        ## HTTPS
+        traefik.http.routers.adguardhome-https.service: "adguardhome-https"
+        traefik.http.routers.adguardhome-https.rule: "Host(`pihole.${DOMAIN:?}`)"
+        traefik.http.routers.adguardhome-https.entrypoints: "websecure"
+        traefik.http.routers.adguardhome-https.tls.certresolver: "letsencrypt"
+        traefik.http.services.adguardhome-https.loadbalancer.server.port: 3000
+        traefik.http.routers.adguardhome-https.middlewares: adguardhome-auth
+        traefik.http.middlewares.adguardhome-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
+        ## Plain DNS/TCP
+        traefik.tcp.routers.adguardhome-dns-tcp.entrypoints: dns-tcp
+        traefik.tcp.routers.adguardhome-dns-tcp.rule: HostSNI(`*`)
+        traefik.tcp.routers.adguardhome-dns-tcp.service: adguardhome-dns-tcp
+        traefik.tcp.services.adguardhome-dns-tcp.loadbalancer.server.port: 53
+        ## Plain DNS/UDP
+        traefik.udp.routers.adguardhome-dns-udp.entrypoints: dns-udp
+        traefik.udp.routers.adguardhome-dns-udp.service: adguardhome-dns-udp
+        traefik.udp.services.adguardhome-dns-udp.loadbalancer.server.port: 53
+        ## DHCP server/TCP
+        #traefik.tcp.routers.adguardhome-dhcp-tcp.entrypoints: dhcp-tcp
+        #traefik.tcp.routers.adguardhome-dhcp-tcp.rule: HostSNI(`*`)
+        #traefik.tcp.routers.adguardhome-dhcp-tcp.service: adguardhome-dhcp-tcp
+        #traefik.tcp.services.adguardhome-dhcp-tcp.loadbalancer.server.port: 68
+        ## DHCP server/UDP1
+        #traefik.udp.routers.adguardhome-dhcp-udp1.entrypoints: dhcp-udp1
+        #traefik.udp.routers.adguardhome-dhcp-udp1.service: adguardhome-dhcp-udp1
+        #traefik.udp.services.adguardhome-dhcp-udp1.loadbalancer.server.port: 67
+        ## DHCP server/UDP2
+        #traefik.udp.routers.adguardhome-dhcp-udp2.entrypoints: dhcp-udp2
+        #traefik.udp.routers.adguardhome-dhcp-udp2.service: adguardhome-dhcp-udp2
+        #traefik.udp.services.adguardhome-dhcp-udp2.loadbalancer.server.port: 68
+        
+networks:
+  public:
+    external: true
+
+volumes:
+  opt_adguardhome_work:
+  opt_adguardhome_conf:
