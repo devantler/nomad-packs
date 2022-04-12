@@ -33,7 +33,7 @@ services:
       - 443:443 # https
     networks:
       - public
-      #- auth
+      - auth
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - letsencrypt:/letsencrypt
@@ -47,7 +47,6 @@ networks:
   public:
     external: true
   auth:
-    external: true
 
 volumes:
   letsencrypt: null
