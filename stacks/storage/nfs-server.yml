@@ -3,8 +3,6 @@ version: "3.8"
 services:
   nfs-server:
     image: gists/nfs-server:2.5.4
-    ports:
-      - 2049:2049
     cap_add:
       - SYS_ADMIN
       - SETPCAP
