@@ -49,5 +49,5 @@ volumes:
   etc_wireguard:
     driver_opts:
       type: nfs
-      o: addr=${NFS_SERVER:?},ro
+      o: addr=nfs-server,ro
       device: :/etc/wireguard
