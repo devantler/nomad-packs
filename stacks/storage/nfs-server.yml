@@ -9,7 +9,7 @@ services:
     volumes:
       - nfs-share:/nfs-share
     networks:
-      - internal
+      - storage
     deploy:
       labels:
         io.portainerhack.cap_add: SYS_ADMIN,SETPCAP
@@ -22,5 +22,5 @@ volumes:
   nfs-share:
 
 networks:
-  internal:
+  storage:
     external: true
