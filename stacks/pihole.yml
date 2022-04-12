@@ -24,7 +24,7 @@ services:
         traefik.http.routers.pihole.rule: "Host(`pihole.${DOMAIN:?}`)"
         traefik.http.routers.pihole.entrypoints: "websecure"
         traefik.http.routers.pihole.tls.certresolver: "letsencrypt"
-        traefik.http.routers.pihole.middlewares: pihole-admin-prefix@docker, pihole-auth@docker
+        traefik.http.routers.pihole.middlewares: pihole-admin-prefix, pihole-auth
         traefik.http.middlewares.pihole-admin-prefix.addprefix.prefix: /admin
         traefik.http.middlewares.pihole-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
         traefik.http.services.pihole.loadbalancer.server.port: 80
