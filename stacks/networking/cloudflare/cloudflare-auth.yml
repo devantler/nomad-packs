@@ -8,4 +8,3 @@ services:
 
 networks:
   auth:
-    external: true
