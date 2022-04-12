@@ -9,7 +9,7 @@ services:
       PASSWORD: ""
       WG_PERSISTENT_KEEPALIVE: 15
     volumes:
-      - etc_wireguard:/etc/wireguard
+      - nfs_etc_wireguard:/etc/wireguard
     networks:
       - public
       - bridge
@@ -43,7 +43,7 @@ networks:
     external: true
 
 volumes:
-  etc_wireguard:
+  nfs_etc_wireguard:
     driver_opts:
       type: nfs
       o: addr=${NFS_SERVER:?},ro
