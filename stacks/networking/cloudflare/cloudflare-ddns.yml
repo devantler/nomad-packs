@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   cloudflare-ddns:
-    image: joshava/cloudflare-ddns
+    image: ghcr.io/joshuaavalon/cloudflare-ddns:2.9.2
     configs:
       - source: cloudflare-ddns-config
         target: /app/config.yaml
