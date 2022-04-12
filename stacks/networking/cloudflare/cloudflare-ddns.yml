@@ -5,3 +5,7 @@ services:
     configs:
       - source: cloudflare-ddns-config
         target: /app/config.yaml
+
+configs:
+  cloudflare-ddns-config:
+    external: true
