@@ -9,7 +9,7 @@ services:
       PASSWORD: ""
       WG_PERSISTENT_KEEPALIVE: 15
     volumes:
-      - nfs_etc_wireguard:/etc/wireguard
+      - etc_wireguard:/etc/wireguard
     networks:
       - public
       - storage
