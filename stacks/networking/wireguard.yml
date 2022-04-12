@@ -12,6 +12,7 @@ services:
       - nfs_etc_wireguard:/etc/wireguard
     networks:
       - public
+      - storage
       - bridge
     ports:
       - 51820:51820/udp
@@ -39,11 +40,13 @@ services:
 networks:
   public:
     external: true
+  storage:
+    external: true
   bridge:
     external: true
 
 volumes:
-  nfs_etc_wireguard:
+  etc_wireguard:
     driver_opts:
       type: nfs
       o: addr=${NFS_SERVER:?},ro
