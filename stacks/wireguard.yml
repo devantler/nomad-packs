@@ -5,13 +5,13 @@ services:
     image: weejewel/wg-easy:5
     environment:
       WG_HOST: vpn.${DOMAIN:?}
-      WG_DEFAULT_DNS: ${DEFAULT_DNS:-192.168.1.200}
+      WG_DEFAULT_DNS: ${DEFAULT_DNS:-192.168.1.201}
       PASSWORD: ""
       WG_PERSISTENT_KEEPALIVE: 15
     volumes:
       - etc_wireguard:/etc/wireguard
     networks:
-      - public
+      - traefik_public
       - bridge
     ports:
       - 51820:51820/udp
@@ -30,14 +30,14 @@ services:
         traefik.http.routers.wireguard.rule: "Host(`wireguard.${DOMAIN:?}`)"
         traefik.http.routers.wireguard.entrypoints: "websecure"
         traefik.http.routers.wireguard.tls.certresolver: "letsencrypt"
-        traefik.http.routers.wireguard.middlewares: wireguard-auth@docker
+        traefik.http.routers.wireguard.middlewares: wireguard-auth
         traefik.http.middlewares.wireguard-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
         traefik.http.services.wireguard.loadbalancer.server.port: 51821
         # cap_add hack
         io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
 
 networks:
-  public:
+  traefik_public:
     external: true
   bridge:
     external: true
@@ -46,5 +46,5 @@ volumes:
   etc_wireguard:
     driver_opts:
       type: nfs
-      o: addr=${NFS_SERVER:?},ro
-      device: :/etc/wireguard
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/wireguard_etc_wireguard

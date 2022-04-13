@@ -3,9 +3,9 @@ services:
   cloudflare-auth:
     image: akohlbecker/traefik-auth-cloudflare:2.0
     networks:
-      - auth
+      - traefik_auth
     command: ["--auth-domain", "https://${SUBDOMAIN:?}.cloudflareaccess.com"]
 
 networks:
-  auth:
+  traefik_auth:
     external: true

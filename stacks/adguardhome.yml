@@ -6,11 +6,8 @@ services:
       - opt_adguardhome_work:/opt/adguardhome/work
       - opt_adguardhome_conf:/opt/adguardhome/conf
     networks:
-      - public
+      - traefik_public
     deploy:
-      placement:
-        constraints:
-          - node.hostname == manager1
       labels:
         traefik.enable: "true"
         traefik.http.routers.adguardhome-https.service: "adguardhome-https"
@@ -31,17 +28,17 @@ services:
         traefik.udp.services.adguardhome-dns-udp.loadbalancer.server.port: 53
         
 networks:
-  public:
+  traefik_public:
     external: true
 
 volumes:
   opt_adguardhome_work:
     driver_opts:
       type: nfs
-      o: addr=${NFS_SERVER:?}
-      device: :/opt/adguardhome/work
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/adguardhome_opt_adguardhome_work
   opt_adguardhome_conf:
     driver_opts:
       type: nfs
-      o: addr=${NFS_SERVER:?}
-      device: :/opt/adguardhome/conf
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/adguardhome_opt_adguardhome_conf
