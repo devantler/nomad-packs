@@ -8,12 +8,11 @@ services:
       - data:/data
     networks:
       - traefik_public
-      - portainer_agent
+      - portainer_private
     deploy:
       placement:
         constraints: 
           - node.role == manager
-          - node.hostname == manager1
       labels:
         traefik.enable: "true"
         # Regular
@@ -35,7 +34,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/volumes:/var/lib/docker/volumes
     networks:
-      - portainer_agent
+      - portainer_private
     environment:
       AGENT_CLUSTER_ADDR: tasks.agent
     deploy:
@@ -44,8 +43,12 @@ services:
 networks:
   traefik_public:
     external: true
-  portainer_agent:
+  portainer_private:
     external: true
 
 volumes:
   data:
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/portainer_data

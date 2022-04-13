@@ -32,8 +32,8 @@ services:
       - 80:80 # http
       - 443:443 # https
     networks:
-      - public
-      - auth
+      - traefik_public
+      - traefik_auth
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - letsencrypt:/letsencrypt
@@ -41,17 +41,16 @@ services:
       placement:
         constraints:
           - node.role == manager
-          - node.hostname == manager1
 
 networks:
-  public:
+  traefik_public:
     external: true
-  auth:
+  traefik_auth:
     external: true
 
 volumes:
   letsencrypt:
     driver_opts:
       type: nfs
-      o: addr=${NFS_SERVER:?}
-      device: :/letsencrypt
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/traefik_letsencrypt

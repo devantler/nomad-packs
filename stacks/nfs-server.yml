@@ -3,14 +3,16 @@ version: "3.8"
 services:
   nfs-server:
     image: gists/nfs-server:2.5.4
+    environment:
+      NFS_OPTION: fsid=0,rw,sync,insecure,no_root_squash
     cap_add:
       - SYS_ADMIN
       - SETPCAP
+    ports:
+      - 2049:2049
     volumes:
       - ${NFS_SHARE_PATH}:/nfs-share
     deploy:
-      labels:
-        io.portainerhack.cap_add: SYS_ADMIN,SETPCAP
       placement:
         constraints:
           - node.role == manager
