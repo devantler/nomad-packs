@@ -33,8 +33,6 @@ services:
         traefik.http.routers.wireguard.middlewares: wireguard-auth
         traefik.http.middlewares.wireguard-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
         traefik.http.services.wireguard.loadbalancer.server.port: 51821
-        # cap_add hack
-        io.portainerhack.cap_add: NET_ADMIN,SYS_MODULE
 
 networks:
   traefik_public:
