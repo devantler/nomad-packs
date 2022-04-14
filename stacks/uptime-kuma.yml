@@ -7,7 +7,7 @@ services:
       - app_data:/app/data
     networks:
       - traefik_public
-      - traefik_internal
+      - internal
     deploy:
       labels:
         traefik.enable: "true"
@@ -29,5 +29,5 @@ volumes:
 networks:
   traefik_public:
     external: true
-  traefik_internal:
+  internal:
     external: true
