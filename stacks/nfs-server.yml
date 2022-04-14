@@ -13,7 +13,7 @@ services:
     volumes:
       - ${NFS_SHARE_PATH}:/nfs-share
     deploy:
-      mode: global
       placement:
         constraints:
           - node.role == manager
+          - node.hostname == manager1
