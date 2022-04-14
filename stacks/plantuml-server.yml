@@ -4,7 +4,7 @@ services:
   plantuml:
     image: plantuml/plantuml-server:v1.2022.4
     networks:
-      - public
+      - traefik_public
     deploy:
       labels:
         traefik.enable: "true"
@@ -17,5 +17,5 @@ services:
         traefik.http.middlewares.plantuml-auth.basicauth.users: ${ADMIN:?}:${ADMIN_PASSWORD:?},${GUEST:?}:${GUEST_PASSWORD:?}
 
 networks:
-  public:
+  traefik_public:
     external: true
