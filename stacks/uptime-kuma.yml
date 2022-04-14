@@ -6,8 +6,8 @@ services:
     volumes:
       - app_data:/app/data
     networks:
-      - public
-      - internal
+      - traefik_public
+      - traefik_internal
     deploy:
       labels:
         traefik.enable: "true"
