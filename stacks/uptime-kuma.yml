@@ -21,9 +21,13 @@ services:
 
 volumes:
   app_data:
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/uptime-kuma_app_data
 
 networks:
-  public:
+  traefik_public:
     external: true
-  internal:
+  traefik_internal:
     external: true
