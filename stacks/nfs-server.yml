@@ -4,7 +4,7 @@ services:
   nfs-server:
     image: gists/nfs-server:2.5.4
     environment:
-      NFS_OPTION: fsid=0,rw,sync,insecure,no_root_squash
+      NFS_OPTION: fsid=0,rw,sync,insecure,no_subtree_check,no_root_squash
     cap_add:
       - SYS_ADMIN
       - SETPCAP
