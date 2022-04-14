@@ -10,9 +10,6 @@ services:
       - traefik_public
       - portainer_private
     deploy:
-      placement:
-        constraints: 
-          - node.role == manager
       labels:
         traefik.enable: "true"
         # Regular
