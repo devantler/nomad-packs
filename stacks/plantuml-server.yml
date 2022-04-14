@@ -14,7 +14,7 @@ services:
         traefik.http.services.plantuml.loadbalancer.server.port: 8080
         traefik.http.routers.plantuml.service: "plantuml"
         traefik.http.routers.plantuml.middlewares: plantuml-auth
-        traefik.http.middlewares.plantuml-auth.basicauth.users: ${ADMIN:?}:${ADMIN_PASSWORD:?},${GUEST:?}:${GUEST_PASSWORD:?}
+        traefik.http.middlewares.plantuml-auth.basicauth.users: ${ADMIN:?}:${ADMIN_HASHED_PASSWORD:?},${GUEST:?}:${GUEST_HASHED_PASSWORD:?}
 
 networks:
   traefik_public:
