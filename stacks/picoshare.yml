@@ -7,7 +7,7 @@ services:
       - traefik-public
     environment:
       PORT: 3001
-      PS_SHARED_SECRET: "${PS_SHARED_SECRET:?}"
+      PS_SHARED_SECRET: "${PASSWORD:?}"
     volumes:
       - data:/data
     deploy:
