@@ -1,11 +1,8 @@
 version: "3.8"
 services:
   cloudflare-ddns:
-    image: ghcr.io/joshuaavalon/cloudflare-ddns:2.9.2
-    configs:
-      - source: cloudflare-ddns-config
-        target: /app/config.yaml
-
-configs:
-  cloudflare-ddns-config:
-    external: true
+    image: oznu/cloudflare-ddns:latest
+    environment:
+      - API_KEY=${API_KEY:?}
+      - ZONE=${DOMAIN:?}
+      - PROXIED=true
