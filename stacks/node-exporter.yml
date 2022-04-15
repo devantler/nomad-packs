@@ -6,6 +6,8 @@ services:
       - '--path.rootfs=/host'
     network_mode: host
     pid: host
+    ports:
+      - 9100:9100
     networks:
       - monitoring
     volumes:
