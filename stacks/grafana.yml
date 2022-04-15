@@ -3,7 +3,7 @@ services:
   grafana:
     image: grafana/grafana:8.4.6
     networks:
-      - traefik-public
+      - traefik_public
       - internal
     volumes:
       - var_lib_grafana:/var/lib/grafana
@@ -27,7 +27,7 @@ services:
         traefik.http.middlewares.grafana-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
 
 networks:
-  traefik-public:
+  traefik_public:
     external: true
   internal:
     external: true
