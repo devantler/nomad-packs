@@ -14,7 +14,14 @@ services:
 
 volumes:
   prometheus:
+      type: nfs
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/prometheus_prometheus
   etc_prometheus:
+      type: nfs
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/prometheus_etc_prometheus
+
 configs:
   prometheus-config:
     external: true
