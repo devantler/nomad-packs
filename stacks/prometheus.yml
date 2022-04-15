@@ -3,6 +3,8 @@ version: "3.8"
 services:
   prometheus:
     image: prom/prometheus:v2.34.0
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
     volumes:
       - prometheus:/prometheus
       - etc_prometheus:/etc/prometheus
