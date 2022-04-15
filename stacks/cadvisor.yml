@@ -5,7 +5,6 @@ services:
     networks:
       - internal
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /:/rootfs:ro
       - /var/run:/var/run
       - /sys:/sys:ro
