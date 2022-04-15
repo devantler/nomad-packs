@@ -9,7 +9,7 @@
 	],
 	"settings": {
 		"yaml.schemas": {
-			"http://json-schema.org/draft/2019-09/schema#": "stacks/monitoring/prometheus.yml"
+			"http://json-schema.org/draft/2019-09/schema#": "stacks/**/prometheus.yml"
 		}
 	}
 }
