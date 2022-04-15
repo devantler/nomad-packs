@@ -6,3 +6,6 @@ services:
       - API_KEY=${API_KEY:?}
       - ZONE=${DOMAIN:?}
       - PROXIED=true
+    deploy:
+      labels:
+        prometheus-job: cloudflare-ddns

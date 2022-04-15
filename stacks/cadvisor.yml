@@ -17,6 +17,8 @@ services:
       - /dev/disk:/dev/disk:ro
     deploy:
       mode: global
+      labels:
+        prometheus-job: cadvisor
 
 networks:
   monitoring:

@@ -14,9 +14,7 @@ services:
       placement:
         constraints:
           - node.role == manager
-      labels:
-        io.portainerhack.cap_add: NET_ADMIN
-
+        prometheus-job: keepalived
 networks:
   host:
     external: true

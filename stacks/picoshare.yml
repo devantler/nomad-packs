@@ -18,7 +18,7 @@ services:
         traefik.http.routers.picoshare.tls.certresolver: "letsencrypt"
         traefik.http.services.picoshare.loadbalancer.server.port: 3001
         traefik.http.routers.picoshare.service: "picoshare"
-
+        prometheus-job: picoshare
 networks:
   traefik_public:
     external: true

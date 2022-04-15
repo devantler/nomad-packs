@@ -18,7 +18,7 @@ services:
         traefik.http.routers.uptime-kuma.service: "uptime-kuma"
         traefik.http.routers.uptime-kuma.middlewares: uptime-kuma-auth@docker
         traefik.http.middlewares.uptime-kuma-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
-
+        prometheus-job: uptime-kuma
 volumes:
   app_data:
     driver_opts:

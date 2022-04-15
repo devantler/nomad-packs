@@ -29,6 +29,7 @@ services:
         traefik.udp.routers.adguardhome-dns-udp.entrypoints: dns-udp
         traefik.udp.routers.adguardhome-dns-udp.service: adguardhome-dns-udp
         traefik.udp.services.adguardhome-dns-udp.loadbalancer.server.port: 53
+        prometheus-job: adguardhome
         
 networks:
   traefik_public:

@@ -24,6 +24,7 @@ services:
         # traefik.http.routers.edge.tls.certresolver: "letsencrypt"
         # traefik.http.services.edge.loadbalancer.server.port: 8000
         # traefik.http.routers.edge.service: edge
+        prometheus-job: portainer
 
   agent:
     image: portainer/agent:2.12.2

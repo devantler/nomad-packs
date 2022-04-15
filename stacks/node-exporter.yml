@@ -14,6 +14,8 @@ services:
       - '/:/host:ro,rslave'
     deploy:
       mode: global
+      labels:
+        prometheus-job: node-exporter
       
 networks:
   monitoring:
