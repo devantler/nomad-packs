@@ -8,6 +8,9 @@ services:
     networks:
       - traefik_public
     deploy:
+      placement:
+        constraints:
+          - node.hostname == manager1
       labels:
         traefik.enable: "true"
         traefik.http.routers.adguardhome.service: "adguardhome"
