@@ -2,18 +2,18 @@ version: '3.8'
 services:
   cadvisor:
     #platform: linux/arm64/v8
-    image: gcr.io/cadvisor/cadvisor:v0.39.3
+    image: martadinata666/cadvisor:v0.44
     privileged: true
     networks:
       - monitoring
     volumes:
+        # https://github.com/google/cadvisor/issues/1565#issuecomment-718812180
+      - /var/run/docker.sock:/var/run/docker.sock
       - /:/rootfs:ro
       - /var/run:/var/run
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-        # https://github.com/google/cadvisor/issues/1565#issuecomment-718812180
-      - /var/run/docker.sock:/var/run/docker.sock
-      #- /dev/disk:/dev/disk:ro
+      - /dev/disk:/dev/disk:ro
     deploy:
       mode: global
 
