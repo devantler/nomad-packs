@@ -17,7 +17,7 @@ services:
         traefik.http.routers.adguardhome.rule: "Host(`adguard.${DOMAIN:?}`)"
         traefik.http.routers.adguardhome.entrypoints: "websecure"
         traefik.http.routers.adguardhome.tls.certresolver: "letsencrypt"
-        traefik.http.services.adguardhome.loadbalancer.server.port: 80
+        traefik.http.services.adguardhome.loadbalancer.server.port: 3000
         traefik.http.routers.adguardhome.middlewares: adguardhome-auth
         traefik.http.middlewares.adguardhome-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
         ## Plain DNS/TCP
