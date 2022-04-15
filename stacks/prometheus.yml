@@ -14,10 +14,12 @@ services:
 
 volumes:
   prometheus:
+    driver_opts:
       type: nfs
       o: addr=${NFS_SERVER:?},nfsvers=4
       device: :/prometheus_prometheus
   etc_prometheus:
+    driver_opts:
       type: nfs
       o: addr=${NFS_SERVER:?},nfsvers=4
       device: :/prometheus_etc_prometheus
