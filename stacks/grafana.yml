@@ -3,7 +3,7 @@ services:
   grafana:
     image: grafana/grafana:8.4.6
     networks:
-      - public
+      - traefik-public
       - internal
     volumes:
       - var_lib_grafana:/var/lib/grafana
@@ -23,11 +23,11 @@ services:
         traefik.http.routers.grafana.tls.certresolver: "letsencrypt"
         traefik.http.routers.grafana.service: "grafana"
         traefik.http.services.grafana.loadbalancer.server.port: 3000
-        traefik.http.routers.grafana.middlewares: grafana-auth@docker
+        traefik.http.routers.grafana.middlewares: grafana-auth
         traefik.http.middlewares.grafana-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
 
 networks:
-  public:
+  traefik-public:
     external: true
   internal:
     external: true
@@ -35,3 +35,7 @@ networks:
 
 volumes:
   var_lib_grafana:
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/grafana_var_lib_grafana
