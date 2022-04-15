@@ -1,8 +1,8 @@
 version: '3.8'
 services:
   cadvisor:
-    image: gcr.io/cadvisor/cadvisor:v0.39.3
     platform: linux/arm64/v8
+    image: gcr.io/cadvisor/cadvisor:v0.39.3
     privileged: true
     networks:
       - monitoring
