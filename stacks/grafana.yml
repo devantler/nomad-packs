@@ -9,7 +9,7 @@ services:
       - var_lib_grafana:/var/lib/grafana
     environment:
       - GF_AUTH_ANONYMOUS_ENABLED=true
-      - GF_AUTH_ANONYMOUS_ORG_NAME=My Org.
+      - GF_AUTH_ANONYMOUS_ORG_NAME=Default.
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_AUTH_BASIC_ENABLED=false
       - GF_AUTH_OAUTH_AUTO_LOGIN=true
