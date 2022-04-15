@@ -1,23 +1,50 @@
-scrape_configs:
-  # Make Prometheus scrape itself for metrics.
-  - job_name: 'prometheus'
-    static_configs:
-    - targets: ['localhost:9090']
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+          # - alertmanager:9093
 
-  # Create a job for Docker Swarm containers.
-  - job_name: 'dockerswarm'
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: 'docker-engines'
+    dockerswarm_sd_configs:
+      - host: unix:///var/run/docker.sock
+        role: nodes
+    relabel_configs:
+      - source_labels: [__meta_dockerswarm_node_address]
+        target_label: __address__
+        replacement: $1:9323
+      - source_labels: [__meta_dockerswarm_node_hostname]
+        target_label: instance
+
+  - job_name: nodes
+    dockerswarm_sd_configs:
+      - host: unix:///var/run/docker.sock
+        role: nodes
+    relabel_configs:
+      - source_labels: [__meta_dockerswarm_node_address]
+        target_label: __address__
+        replacement: $1:9100
+      - source_labels: [__meta_dockerswarm_node_hostname]
+        target_label: instance
+
+  - job_name: 'containers'
     dockerswarm_sd_configs:
       - host: unix:///var/run/docker.sock
         role: tasks
     relabel_configs:
-      # Only keep containers that should be running.
       - source_labels: [__meta_dockerswarm_task_desired_state]
         regex: running
         action: keep
-      # Only keep containers that have a `prometheus-job` label.
       - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
         regex: .+
         action: keep
-      # Use the prometheus-job Swarm label as Prometheus job label.
       - source_labels: [__meta_dockerswarm_service_label_prometheus_job]
         target_label: job
