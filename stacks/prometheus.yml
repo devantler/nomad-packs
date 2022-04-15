@@ -6,6 +6,7 @@ services:
     volumes:
       - prometheus:/prometheus
       - etc_prometheus:/etc/prometheus
+      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 9090:9090
     configs:
