@@ -1,11 +1,10 @@
 version: '3.8'
 services:
   cadvisor:
-    #platform: linux/arm64/v8
     image: martadinata666/cadvisor:v0.44
     privileged: true
-    ports:
-      - 8080:8080
+    # ports:
+    #   - 8080:8080
     networks:
       - monitoring
     volumes:
