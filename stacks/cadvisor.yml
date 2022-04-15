@@ -1,18 +1,21 @@
 version: '3.8'
 services:
   cadvisor:
-    image: raylas/cadvisor:0.43.0
+    image: gcr.io/cadvisor/cadvisor:latest
+    privileged: true
     networks:
-      - internal
+      - monitoring
     volumes:
       - /:/rootfs:ro
       - /var/run:/var/run
       - /sys:/sys:ro
       - /var/lib/docker/:/var/lib/docker:ro
-      - /dev/disk/:/dev/disk:ro
+        # https://github.com/google/cadvisor/issues/1565#issuecomment-718812180
+      - /var/run/docker.sock:/var/run/docker.sock
+      #- /dev/disk:/dev/disk:ro
     deploy:
       mode: global
 
 networks:
-  internal:
+  monitoring:
     external: true
