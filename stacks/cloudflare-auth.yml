@@ -4,7 +4,7 @@ services:
     image: akohlbecker/traefik-auth-cloudflare:2.0
     networks:
       - traefik_auth
-    command: ["--auth-domain", "https://${SUBDOMAIN:?}.cloudflareaccess.com"]
+    command: ["--auth-domain", "https://${DOMAIN_NO_TLD:?}.cloudflareaccess.com"]
 
 networks:
   traefik_auth:

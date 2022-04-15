@@ -5,7 +5,7 @@ services:
     image: weejewel/wg-easy:5
     environment:
       WG_HOST: vpn.${DOMAIN:?}
-      WG_DEFAULT_DNS: ${DEFAULT_DNS:-192.168.1.201}
+      WG_DEFAULT_DNS: ${DEFAULT_DNS:-192.168.1.200}
       PASSWORD: ""
       WG_PERSISTENT_KEEPALIVE: 15
     volumes:

@@ -4,10 +4,10 @@ services:
   picoshare:
     image: mtlynch/picoshare:1.0.7
     networks:
-      - public
+      - traefik_public
     environment:
       PORT: 3001
-      PS_SHARED_SECRET: "${PS_SHARED_SECRET:?}"
+      PS_SHARED_SECRET: "${PASSWORD:?}"
     volumes:
       - data:/data
     deploy:
@@ -20,8 +20,12 @@ services:
         traefik.http.routers.picoshare.service: "picoshare"
 
 networks:
-  public:
+  traefik_public:
     external: true
 
 volumes:
   data:
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_SERVER:?},nfsvers=4
+      device: :/picoshare_data
