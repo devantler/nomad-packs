@@ -4,8 +4,7 @@ services:
   devantler-cms:
     image: ghcr.io/devantler/devantler-cms:main
     networks:
-      - public
-      - internal
+      - traefik_public
     volumes:
       - app_wwwroot:/app/wwwroot
     environment:
@@ -23,7 +22,5 @@ volumes:
   app_wwwroot:
   
 networks:
-  public:
-    external: true
-  internal:
+  traefik_public:
     external: true

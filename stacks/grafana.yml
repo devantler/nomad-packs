@@ -4,7 +4,7 @@ services:
     image: grafana/grafana:8.4.6
     networks:
       - traefik_public
-      - internal
+      - monitoring
     volumes:
       - var_lib_grafana:/var/lib/grafana
     environment:
@@ -29,7 +29,7 @@ services:
 networks:
   traefik_public:
     external: true
-  internal:
+  monitoring:
     external: true
   
 
