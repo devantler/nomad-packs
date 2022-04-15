@@ -6,6 +6,8 @@ services:
     volumes:
       - prometheus:/prometheus
       - etc_prometheus:/etc/prometheus
+    ports:
+      - 9090:9090
     configs:
       - source: prometheus-config
         target: /etc/prometheus/prometheus.yml
