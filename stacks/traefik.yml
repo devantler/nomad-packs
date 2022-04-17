@@ -41,8 +41,7 @@ services:
       placement:
         constraints:
           - node.role == manager
-      labels:
-        prometheus-job: traefik
+        
 networks:
   traefik_public:
     external: true

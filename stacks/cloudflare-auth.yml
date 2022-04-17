@@ -5,9 +5,7 @@ services:
     networks:
       - traefik_auth
     command: ["--auth-domain", "https://${DOMAIN_NO_TLD:?}.cloudflareaccess.com"]
-    deploy:
-      labels:
-        prometheus-job: cloudflare-auth
+        
 networks:
   traefik_auth:
     external: true

@@ -17,7 +17,7 @@ services:
         traefik.http.routers.devantler-cms.tls.certresolver: "letsencrypt"
         traefik.http.routers.devantler-cms.service: "devantler-cms"
         traefik.http.services.devantler-cms.loadbalancer.server.port: 5000
-        prometheus-job: devantler-cms
+        
 
 volumes:
   app_wwwroot:

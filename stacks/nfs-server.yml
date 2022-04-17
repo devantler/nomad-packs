@@ -17,5 +17,3 @@ services:
         constraints:
           - node.role == manager
           - node.hostname == manager1
-      labels:
-        prometheus-job: nfs-server

@@ -25,7 +25,7 @@ services:
         traefik.http.routers.prometheus.service: "prometheus"
         traefik.http.routers.prometheus.middlewares: prometheus-auth
         traefik.http.middlewares.prometheus-auth.forwardauth.address: http://cloudflare-auth:8080/auth/${CLOUDFLARE_AUTH_AUD:?}
-        prometheus-job: prometheus
+        
 volumes:
   prometheus:
     driver_opts:

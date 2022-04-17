@@ -14,8 +14,7 @@ services:
       placement:
         constraints:
           - node.role == manager
-      labels:
-        prometheus-job: keepalived
+        
 networks:
   host:
     external: true
