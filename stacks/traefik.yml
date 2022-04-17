@@ -53,5 +53,5 @@ volumes:
   letsencrypt:
     driver_opts:
       type: nfs
-      o: addr=${NFS_SERVER:?},nfsvers=4
+      o: addr=${NFS_SERVER:?},nfsvers=4,rw
       device: :/traefik_letsencrypt
