@@ -37,5 +37,5 @@ volumes:
   var_lib_grafana:
     driver_opts:
       type: nfs
-      o: addr=${NFS_SERVER:?},nfsvers=4
+      o: addr=${NFS_SERVER:?},nfsvers=4,rw
       device: :/grafana_var_lib_grafana
