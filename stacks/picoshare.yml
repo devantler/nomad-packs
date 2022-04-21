@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   picoshare:
-    image: mtlynch/picoshare:1.0.7
+    image: mtlynch/picoshare:1.1.0
     networks:
       - traefik_public
     environment:
