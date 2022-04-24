@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   uptime-kuma:
-    image: louislam/uptime-kuma:1.14.1
+    image: louislam/uptime-kuma:1.15.0
     volumes:
       - app_data:/app/data
     networks:
