@@ -35,7 +35,7 @@ This repo contains deployable stacks for a secure and fully Docker swarm-managed
 
 ### Portainer
 
-Portainer is a centralized service delivery platform for containerized apps that allows self-hosting docker applications in fully managed environments with either Docker Swarm or K8.
+Portainer is a centralized service delivery platform for containerized apps that allows self-hosting docker applications in fully managed environments with Docker Swarm, Hashicorp Nomad or Kubernetes.
 
 This service manages all other stacks in the cluster and is capable of:
 
