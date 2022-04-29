@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   grafana:
-    image: grafana/grafana:8.5.0
+    image: grafana/grafana:8.5.1
     networks:
       - traefik_public
       - monitoring
