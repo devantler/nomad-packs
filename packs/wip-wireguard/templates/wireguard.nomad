@@ -1,5 +1,4 @@
 job "wireguard" {
-  datacenters = ["dc1"]
   group "vpn" {
     network {
       mode = "bridge"
@@ -39,7 +38,7 @@ job "wireguard" {
         WG_HOST                 = "vpn.[[ .my.domain ]]"
         WG_DEFAULT_DNS          = [[ .my.default_dns ]]
         PASSWORD                = [[ .my.password ]]
-        WG_PERSISTENT_KEEPALIVE = 15
+        WG_PERSISTENT_KEEPALIVE = [[ .my.persistent_keepalive ]]
       }
       cap_add = ["net_admin", "sys_module"]
       config {
@@ -51,14 +50,12 @@ job "wireguard" {
       volume_mount {
         volume      = "wireguard-volume"
         destination = "/etc/wireguard"
-        read_only   = false
       }
     }
     volume "wireguard-volume" {
       type            = "csi"
       attachment_mode = "file-system"
       access_mode     = "single-node-writer"
-      read_only       = false
       source          = "wireguard-volume"
     }
   }
