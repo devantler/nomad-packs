@@ -32,9 +32,9 @@ job "ceph-csi-plugin-controller" {
           }
         ]
         args = [
-          "--type=rbd",
+          "--type=cephfs",
           "--controllerserver=true",
-          "--drivername=rbd.csi.ceph.com",
+          "--drivername=cephfs.csi.ceph.com",
           "--endpoint=unix://csi/csi.sock",
           "--nodeid=${node.unique.name}",
           "--instanceid=${node.unique.name}}-controller",
