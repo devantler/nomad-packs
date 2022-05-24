@@ -32,8 +32,8 @@ job "ceph-csi-plugin-nodes" {
           }
         ]
         args = [
-          "--type=cephfs",
-          "--drivername=cephfs.csi.ceph.com",
+          "--type=rbd",
+          "--drivername=rbd.csi.ceph.com",
           "--nodeserver=true",
           "--endpoint=unix://csi/csi.sock",
           "--nodeid=${node.unique.name}",
