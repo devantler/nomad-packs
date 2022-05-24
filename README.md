@@ -4,7 +4,7 @@ This repo contains my Nomad Packs for the services I use in my HomeLab. Nomad Pa
 
 ## Prerequisites
 
-- One or more nodes with Nomad and Consul.
+- A Nomad, Consul and Ceph Cluster.
   - For high availability, you need a minimum of three nodes to maintain a quorum of servers.
 - Port 80/TCP forwarded to the Keepalived virtual IP
 - Port 443/TCP forwarded to the Keepalived virtual IP
