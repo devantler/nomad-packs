@@ -1,5 +1,5 @@
 job "traefik" {
-  datacenters = ["dc1"]
+  type = "system"
   group "traefik" {
     network {
       mode = "bridge"
@@ -15,7 +15,7 @@ job "traefik" {
     }
     service {
       name = "traefik"
-      port     = "http"
+      port = "http"
       connect {
         native = true
       }

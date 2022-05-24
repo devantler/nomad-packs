@@ -1,6 +1,5 @@
 job "ceph-csi-plugin-nodes" {
-  datacenters = ["dc1"]
-  type        = "system"
+  type = "system"
   group "ceph-csi-plugin" {
     network {
       port "metrics" {}
@@ -8,7 +7,7 @@ job "ceph-csi-plugin-nodes" {
     task "ceph-node" {
       driver = "docker"
       template {
-        data = <<EOF
+        data        = <<EOF
         [{
             "clusterID": [[ .my.cluster_id | quote ]],
             "monitors": [[ .my.monitors | toStringList ]]
@@ -33,8 +32,8 @@ job "ceph-csi-plugin-nodes" {
           }
         ]
         args = [
-          "--type=rbd",
-          "--drivername=rbd.csi.ceph.com",
+          "--type=cephfs",
+          "--drivername=cephfs.csi.ceph.com",
           "--nodeserver=true",
           "--endpoint=unix://csi/csi.sock",
           "--nodeid=${node.unique.name}",
@@ -53,7 +52,7 @@ job "ceph-csi-plugin-nodes" {
       service {
         name = "ceph-csi-nodes"
         port = "metrics"
-        tags = [ "prometheus" ]
+        tags = ["prometheus"]
       }
       csi_plugin {
         id        = "ceph-csi"
