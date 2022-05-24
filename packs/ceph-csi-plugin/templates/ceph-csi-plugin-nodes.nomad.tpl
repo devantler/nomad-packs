@@ -1,5 +1,4 @@
 job "ceph-csi-plugin-nodes" {
-  datacenters = ["dc1"]
   type        = "system"
   group "ceph-csi-plugin" {
     network {

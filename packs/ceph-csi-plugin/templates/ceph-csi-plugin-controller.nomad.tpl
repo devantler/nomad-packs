@@ -1,5 +1,4 @@
 job "ceph-csi-plugin-controller" {
-  datacenters = ["dc1"]
   group "ceph-csi-plugin" {
     network {
       port "metrics" {}
