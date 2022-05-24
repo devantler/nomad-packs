@@ -1,5 +1,5 @@
 job "ceph-csi-plugin-nodes" {
-  type = "system"
+  type        = "system"
   group "ceph-csi-plugin" {
     network {
       port "metrics" {}
