@@ -59,15 +59,14 @@ job "traefik" {
       }
       volume_mount {
         volume      = "letsencrypt-volume"
-        destination = "${NOMAD_ALLOC_DIR}/letsencrypt"
+        destination = "/letsencrypt"
       }
     }
 
     volume "letsencrypt-volume" {
       type            = "csi"
-      access_mode     = "single-node-writer"
+      access_mode     = "multi-node-multi-writer"
       attachment_mode = "file-system"
-      per_alloc       = true
       source          = "letsencrypt-volume"
     }
   }
