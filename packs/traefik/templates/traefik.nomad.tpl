@@ -7,7 +7,15 @@ job "traefik" {
     }
     constraint {
       attribute = "${attr.unique.hostname}"
-      value     = "server1,server2,server3"
+      value     = "server1"
+    }
+    constraint {
+      attribute = "${attr.unique.hostname}"
+      value     = "server2"
+    }
+    constraint {
+      attribute = "${attr.unique.hostname}"
+      value     = "server3"
     }
     network {
       mode = "bridge"
