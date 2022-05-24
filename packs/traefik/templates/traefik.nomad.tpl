@@ -1,6 +1,6 @@
 job "traefik" {
   datacenters = ["dc1"]
-  type = "system"
+  type        = "system"
   group "traefik" {
     network {
       mode = "bridge"
@@ -60,6 +60,7 @@ job "traefik" {
       type            = "csi"
       access_mode     = "multi-node-multi-writer"
       attachment_mode = "file-system"
+      per_alloc       = true
       source          = "letsencrypt-volume"
     }
   }
