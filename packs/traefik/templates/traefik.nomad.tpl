@@ -58,7 +58,7 @@ job "traefik" {
 
     volume "letsencrypt-volume" {
       type            = "csi"
-      access_mode     = "multi-node-multi-writer"
+      access_mode     = "single-node-writer"
       attachment_mode = "file-system"
       per_alloc       = true
       source          = "letsencrypt-volume"
