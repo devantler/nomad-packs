@@ -20,7 +20,7 @@ job "ceph-csi-plugin-nodes" {
       config {
         image = "quay.io/cephcsi/cephcsi:v3.6.1"
         volumes = [
-          "./local/config.json:/etc/ceph-csi-config/config.json"
+          "./local/config.json:/etc/ceph-csi-config/config.json",
           "/lib/modules:/lib/modules"
         ]
         mounts = [
@@ -46,7 +46,6 @@ job "ceph-csi-plugin-nodes" {
           "--metricsport=$${NOMAD_PORT_metrics}"
         ]
         privileged = true
-        cap_add = ["sys_admin"]
       }
       resources {
         cpu    = 500
