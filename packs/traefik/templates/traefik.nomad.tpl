@@ -1,10 +1,7 @@
 job "traefik" {
   datacenters = ["dc1"]
+  type        = "system"
   group "traefik" {
-    count = 3
-    constraint {
-      distinct_hosts = true
-    }
     constraint {
       attribute = "${attr.unique.hostname}"
       operator  = "set_contains_any"
