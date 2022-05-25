@@ -46,6 +46,7 @@ job "ceph-csi-plugin-nodes" {
           "--metricsport=$${NOMAD_PORT_metrics}"
         ]
         privileged = true
+        cap_add = ["sys_admin"]
       }
       resources {
         cpu    = 500
