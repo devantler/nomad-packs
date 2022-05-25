@@ -21,6 +21,7 @@ job "ceph-csi-plugin-nodes" {
         image = "quay.io/cephcsi/cephcsi:v3.6.1"
         volumes = [
           "./local/config.json:/etc/ceph-csi-config/config.json"
+          "/lib/modules:/lib/modules"
         ]
         mounts = [
           {
