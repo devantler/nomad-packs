@@ -19,12 +19,12 @@ job "adguardhome" {
       ]
       connect {
         sidecar_service {
-          // proxy {
-          //   upstreams {
-          //     destination_name = "cloudflare-auth"
-          //     local_bind_port  = 9123
-          //   }
-          // }
+          proxy {
+            upstreams {
+              destination_name = "cloudflare-auth"
+              local_bind_port  = 9123
+            }
+          }
         }
       }
     }
