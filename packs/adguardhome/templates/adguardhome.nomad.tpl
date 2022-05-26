@@ -2,7 +2,6 @@ job "adguardhome" {
   datacenters = ["dc1"]
   group "adguardhome" {
     network {
-      mode = "bridge"
       port  "http" {
         to = 3000
       }
