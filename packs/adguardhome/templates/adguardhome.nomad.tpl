@@ -17,13 +17,13 @@ job "adguardhome" {
         "traefik.http.routers.adguardhome.middlewares=adguardhome-auth",
         "traefik.http.middlewares.adguardhome-auth.forwardauth.address=http://cloudflare-auth:9123/auth/[[ .my.cloudflare_auth_aud ]]",
       ]
-    }
-    connect {
-      sidecar_service {
-        proxy {
-          upstreams {
-            destination_name = "cloudflare-auth"
-            local_bind_port  = 9123
+      connect {
+        sidecar_service {
+          proxy {
+            upstreams {
+              destination_name = "cloudflare-auth"
+              local_bind_port  = 9123
+            }
           }
         }
       }
