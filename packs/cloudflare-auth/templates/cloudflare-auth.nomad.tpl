@@ -1,6 +1,9 @@
 job "cloudflare-auth" {
   datacenters = ["dc1"]
   group "cloudflare-auth" {
+    network {
+      mode = "bridge"
+    }
     service {
       name = "cloudflare-auth"
       port = 8080
