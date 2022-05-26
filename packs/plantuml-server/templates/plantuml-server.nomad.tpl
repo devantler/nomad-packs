@@ -2,13 +2,11 @@ job "plantuml-server" {
   datacenters = ["dc1"]
   group "plantuml-server" {
     network {
-      port  "http" {
-        to = 8080
-      }
+      mode = "bridge"
     }
     service {
       name = "plantuml-server"
-      port = "http" 
+      port = 8080 
       tags = [
         "traefik.enable=true",
         "traefik.http.routers.plantuml-server.entrypoints=websecure",
@@ -16,6 +14,9 @@ job "plantuml-server" {
         "traefik.http.routers.plantuml-server.middlewares=plantuml-server-auth",
         "traefik.http.middlewares.plantuml-server-auth.basicauth.users=[[ .my.admin ]]:[[ .my.admin_hashed_password ]],[[ .my.guest ]]:[[ .my.guest_hashed_password ]]"
       ]
+      connect {
+        sidecar_service {}
+      }
       check {
         type     = "tcp"
         interval = "10s"
@@ -26,7 +27,6 @@ job "plantuml-server" {
       driver = "docker"
       config {
         image = "plantuml/plantuml-server:v1.2022.5"
-        ports = ["http"]
       }
     }
   }

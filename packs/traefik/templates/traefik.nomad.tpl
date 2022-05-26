@@ -43,19 +43,15 @@ job "traefik" {
           "--entrypoints.dns-tcp.address=:53/tcp",
           "--entrypoints.dns-udp.address=:53/udp",
 
-          "--providers.consulcatalog=true",
-          "--providers.consulcatalog.endpoint.scheme=http",
-          "--providers.consulcatalog.defaultRule=Host(`{{ .Name }}.[[ .my.domain ]]`)",
-          "--providers.consulcatalog.exposedbydefault=false",
           "--providers.consulcatalog.connectAware=true",
+          "--providers.consulcatalog.connectbydefault=true",
+          "--providers.consulcatalog.exposedbydefault=false",
+          "--providers.consulcatalog.defaultRule=Host(`{{ .Name }}.[[ .my.domain ]]`)",
 
           "--certificatesresolvers.letsencrypt.acme.dnschallenge=true",
           "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare",
           "--certificatesresolvers.letsencrypt.acme.email=[[ .my.email ]]",
-          "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json",
-
-          "--entrypoints.web.http.redirections.entrypoint.to=websecure",
-          "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+          "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
         ]
       }
       volume_mount {
