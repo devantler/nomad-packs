@@ -6,7 +6,7 @@ job "plantuml-server" {
     }
     service {
       name = "plantuml-server"
-      port = 8080 
+      port = 8080
       tags = [
         "traefik.enable=true",
         "traefik.http.routers.plantuml-server.entrypoints=websecure",
@@ -16,11 +16,6 @@ job "plantuml-server" {
       ]
       connect {
         sidecar_service {}
-      }
-      check {
-        type     = "tcp"
-        interval = "10s"
-        timeout  = "2s"
       }
     }
     task "plantuml-server" {
