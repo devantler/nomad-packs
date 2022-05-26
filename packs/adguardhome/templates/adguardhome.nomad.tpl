@@ -14,17 +14,17 @@ job "adguardhome" {
         "traefik.enable=true",
         "traefik.http.routers.adguardhome.entrypoints=websecure",
         "traefik.http.routers.adguardhome.tls.certresolver=letsencrypt",
-        "traefik.http.routers.adguardhome.middlewares=adguardhome-auth",
-        "traefik.http.middlewares.adguardhome-auth.forwardauth.address=http://cloudflare-auth:9123/auth/[[ .my.cloudflare_auth_aud ]]",
+        // "traefik.http.routers.adguardhome.middlewares=adguardhome-auth",
+        // "traefik.http.middlewares.adguardhome-auth.forwardauth.address=http://cloudflare-auth:9123/auth/[[ .my.cloudflare_auth_aud ]]",
       ]
       connect {
         sidecar_service {
-          proxy {
-            upstreams {
-              destination_name = "cloudflare-auth"
-              local_bind_port  = 9123
-            }
-          }
+          // proxy {
+          //   upstreams {
+          //     destination_name = "cloudflare-auth"
+          //     local_bind_port  = 9123
+          //   }
+          // }
         }
       }
     }
