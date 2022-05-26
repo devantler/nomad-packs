@@ -52,7 +52,10 @@ job "traefik" {
           "--certificatesresolvers.letsencrypt.acme.dnschallenge=true",
           "--certificatesresolvers.letsencrypt.acme.dnschallenge.provider=cloudflare",
           "--certificatesresolvers.letsencrypt.acme.email=[[ .my.email ]]",
-          "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json"
+          "--certificatesresolvers.letsencrypt.acme.storage=/letsencrypt/acme.json",
+
+          "--entrypoints.web.http.redirections.entrypoint.to=websecure",
+          "--entrypoints.web.http.redirections.entrypoint.scheme=https"
         ]
       }
       volume_mount {
