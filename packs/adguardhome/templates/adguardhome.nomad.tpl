@@ -26,7 +26,7 @@ job "adguardhome" {
           proxy {
             upstreams {
               destination_name = "cloudflare-auth"
-              local_bind_port  = 8080
+              local_bind_port  = 9123
             }
           }
         }

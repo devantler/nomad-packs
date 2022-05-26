@@ -6,7 +6,7 @@ job "cloudflare-auth" {
     }
     service {
       name = "cloudflare-auth"
-      port = 9123
+      port = 8080
 
       connect {
         sidecar_service {}
