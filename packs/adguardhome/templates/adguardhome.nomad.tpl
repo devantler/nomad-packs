@@ -19,7 +19,7 @@ job "adguardhome" {
         "traefik.http.routers.adguardhome.entrypoints=websecure",
         "traefik.http.routers.adguardhome.tls.certresolver=letsencrypt",
         "traefik.http.routers.adguardhome.middlewares=adguardhome-auth",
-        "traefik.http.middlewares.adguardhome-auth.forwardauth.address=http://${NOMAD_UPSTREAM_ADDR_cloudflare_auth}/auth/[[ .my.cloudflare_auth_aud ]]",
+        "traefik.http.middlewares.adguardhome-auth.forwardauth.address=http://cloudflare-auth.devantler.com/auth/[[ .my.cloudflare_auth_aud ]]",
       ]
       connect {
         sidecar_service {

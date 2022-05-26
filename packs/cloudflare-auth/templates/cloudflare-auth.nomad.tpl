@@ -7,7 +7,11 @@ job "cloudflare-auth" {
     service {
       name = "cloudflare-auth"
       port = 8080
-      
+      tags = [
+        "traefik.enable=true",
+        "traefik.consulcatalog.connect=true",
+        "traefik.http.routers.cloudflare-auth.entrypoints=web"
+      ]
       connect {
         sidecar_service {}
       }
