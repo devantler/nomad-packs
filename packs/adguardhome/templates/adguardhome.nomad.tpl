@@ -4,7 +4,6 @@ job "adguardhome" {
     network {
       mode = "bridge"
       port  "http" {
-        static = 3000
         to = 3000
       }
       port  "tcp/dns" {
