@@ -14,13 +14,13 @@ job "valheim-server" {
       driver = "docker"
 
       config {
-        image = "ghcr.io/lloesche/valheim-server"
+        image   = "ghcr.io/lloesche/valheim-server"
         cap_add = ["sys_nice"]
       }
       env {
-        SERVER_NAME = "My Server",
-        WORLD_NAME  = "Valhalla"
-        SERVER_PASS = "macho_nacho"
+        SERVER_NAME = [[ .my.server_name | quote ]],
+        WORLD_NAME  = [[ .my.world_name | quote ]]
+        SERVER_PASS = [[ .my.server_pass | quote ]]
       }
       volume_mount {
         volume      = "valheim-server-volume"
@@ -31,7 +31,7 @@ job "valheim-server" {
         destination = "/config"
       }
     }
-    volume "adguardhome-volume" {
+    volume "valheim-sever-volume" {
       type            = "csi"
       attachment_mode = "file-system"
       access_mode     = "single-node-writer"
