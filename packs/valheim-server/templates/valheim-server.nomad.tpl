@@ -31,7 +31,7 @@ job "valheim-server" {
         destination = "/config"
       }
     }
-    volume "valheim-sever-volume" {
+    volume "valheim-server-volume" {
       type            = "csi"
       attachment_mode = "file-system"
       access_mode     = "single-node-writer"
