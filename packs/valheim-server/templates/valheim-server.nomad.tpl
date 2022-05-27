@@ -18,7 +18,7 @@ job "valheim-server" {
         cap_add = ["sys_nice"]
       }
       env {
-        SERVER_NAME = [[ .my.server_name | quote ]],
+        SERVER_NAME = [[ .my.server_name | quote ]]
         WORLD_NAME  = [[ .my.world_name | quote ]]
         SERVER_PASS = [[ .my.server_pass | quote ]]
       }
