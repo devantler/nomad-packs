@@ -1,5 +1,5 @@
 job "valheim-server" {
-  datacenters = "dc1"
+  datacenters = ["dc1"]
   group "app" {
     service {
       name = "valheim-server"
