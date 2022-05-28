@@ -1,6 +1,10 @@
 job "valheim-server" {
   datacenters = ["dc1"]
-  group "app" {
+  group "valheim-server" {
+    constraint {
+      attribute = "${attr.cpu.arch}"
+      value     = "amd64"
+    }
     service {
       name = "valheim-server"
       port = 2456
