@@ -17,7 +17,7 @@ job "ceph-csi-plugin-controller" {
       }
       driver = "docker"
       config {
-        image = "quay.io/cephcsi/cephcsi:v3.6.1"
+        image = "quay.io/cephcsi/cephcsi:v3.6.2"
         volumes = [
           "./local/config.json:/etc/ceph-csi-config/config.json"
         ]

@@ -18,7 +18,7 @@ job "ceph-csi-plugin-nodes" {
         change_mode = "restart"
       }
       config {
-        image = "quay.io/cephcsi/cephcsi:v3.6.1"
+        image = "quay.io/cephcsi/cephcsi:v3.6.2"
         volumes = [
           "./local/config.json:/etc/ceph-csi-config/config.json",
           "/lib/modules:/lib/modules"
