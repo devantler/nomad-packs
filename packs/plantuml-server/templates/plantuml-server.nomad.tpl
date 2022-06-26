@@ -21,7 +21,7 @@ job "plantuml-server" {
     task "plantuml-server" {
       driver = "docker"
       config {
-        image = "plantuml/plantuml-server:v1.2022.5"
+        image = "plantuml/plantuml-server:v1.2022.6"
       }
     }
   }
