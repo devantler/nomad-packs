@@ -2,8 +2,7 @@ job "postgres" {
   datacenters = ["dc1"]
   group "postgres" {
     network {
-      mode = "host"
-      port "http" {
+      port  "db"{
         static = 5432
       }
     }
@@ -11,19 +10,14 @@ job "postgres" {
       driver = "docker"
       config {
         image = "postgres"
-      }
-      env {
-          POSTGRES_USER="root"
-          POSTGRES_PASSWORD="rootpassword"
+        ports = ["db"]
       }
       service {
         name = "postgres"
-        port = "http"
-
+        port = "db"
         check {
-          name     = "alive"
           type     = "tcp"
-          interval = "10s"
+          interval = "2s"
           timeout  = "2s"
         }
       }
