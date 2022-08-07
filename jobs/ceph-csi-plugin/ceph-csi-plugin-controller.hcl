@@ -1,3 +1,13 @@
+variable "cluster_id" {
+  description = "The ID of the ceph cluster to add the node to."
+  type = string
+}
+
+variable "monitors" {
+    description = "The IP addresses of the monitors in your ceph cluster."
+    type = list(string)
+}
+
 job "ceph-csi-plugin-controller" {
   datacenters = ["dc1"]
   group "ceph-csi-plugin" {
@@ -37,7 +47,7 @@ job "ceph-csi-plugin-controller" {
           "--drivername=cephfs.csi.ceph.com",
           "--endpoint=unix://csi/csi.sock",
           "--nodeid=${node.unique.name}",
-          "--instanceid=${node.unique.name}}-controller",
+          "--instanceid=${node.unique.name}-controller",
           "--pidlimit=-1",
           "--logtostderr=true",
           "--v=5",

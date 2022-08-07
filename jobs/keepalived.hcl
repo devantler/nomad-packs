@@ -1,3 +1,9 @@
+variable "virtual_ips" {
+    description = "The virtual IPs to assign to nodes."
+    type = string
+    default = "10.10.10.0"
+}
+
 job "keepalived" {
   datacenters = ["dc1"]
   type = "system"

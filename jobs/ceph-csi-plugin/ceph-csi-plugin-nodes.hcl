@@ -1,3 +1,13 @@
+variable "cluster_id" {
+  description = "The ID of the ceph cluster to add the node to."
+  type = string
+}
+
+variable "monitors" {
+    description = "The IP addresses of the monitors in your ceph cluster."
+    type = list(string)
+}
+
 job "ceph-csi-plugin-nodes" {
   datacenters = ["dc1"]
   type        = "system"
@@ -11,7 +21,7 @@ job "ceph-csi-plugin-nodes" {
         data        = <<EOF
         [{
             "clusterID": "${ cluster_id }",
-            "monitors": "${monitors }"
+            "monitors": "${ monitors }"
         }]
         EOF
         destination = "local/config.json"
